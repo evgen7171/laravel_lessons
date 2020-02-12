@@ -4,9 +4,19 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">=Главная=</div>
+    <div style="border:1px solid black">=Админ=</div>
 @endsection
 
 @section('content')
-    {{--<p>{{$content}}</p>--}}
+    @if(isset($links))
+        @foreach($links as $link)
+            <a href="/admin/{{$link}}">{{$link}}</a>
+        @endforeach
+    @endif
+    <h1>Добро пожаловать Admin!</h1>
+    {{ isset($text) ? $text : '' }}
 @endsection
+
+{{--{{ $param or 'Default' }}--}}
+
+

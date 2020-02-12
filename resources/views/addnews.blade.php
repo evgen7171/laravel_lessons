@@ -4,15 +4,15 @@
 
 @section('sidebar')
     @parent
-    @if(!isset($category))
-        <div style="border:1px solid black">=Новости=</div>
-    @else
-        <div style="border:1px solid black">={{$category}}=</div>
-    @endif
+    <div style="border:1px solid black">=Добавить новость=</div>
 @endsection
 
 @section('content')
-    @foreach($arr as $item)
-        <a href="/news/{{$item['id']}}">{{$item['title']}}</a><br>
-    @endforeach
+    <form method="post" action="/news/add">
+        @csrf
+        <div class="line"><span>Название:</span><input type="text" name="title"></div>
+        <div class="line"><span>Категория:</span><input type="text" name="categories"></div>
+        <div class="line"><span>Текст:</span><input type="text" name="text"></div>
+        <input type="submit" value="отправить">
+    </form>
 @endsection

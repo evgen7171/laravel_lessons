@@ -4,10 +4,15 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">=Информация=</div>
+    @if(!isset($category))
+        <div style="border:1px solid black">=Новости=</div>
+    @else
+        <div style="border:1px solid black">={{$category}}=</div>
+    @endif
 @endsection
 
 @section('content')
-    <p>Сайт в разработке</p>
-    <p>&copy;Евгений by GeekBrains. 2020 г.</p>
+    @foreach($arr as $item)
+        <a href="/news/{{$item['id']}}">{{$item['title']}}</a><br>
+    @endforeach
 @endsection

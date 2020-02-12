@@ -4,11 +4,9 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">=Новости=</div>
+    <div style="border:1px solid black">={{$oneNews['title']}}=</div>
 @endsection
 
 @section('content')
-    <?php foreach($arr as $item):?>
-    <a href="/news/{{$item['id']}}"><?=$item['title']?></a><br>
-    <?php endforeach;?>
+    {{$oneNews['text']}}
 @endsection
