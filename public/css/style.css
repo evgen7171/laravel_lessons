@@ -1,8 +1,15 @@
-.menu{
+.menu {
     display: flex;
     border: 1px solid #000;
 }
-.menu li{
+
+.menu li {
     list-style-type: none;
     margin: 10px;
+}
+
+.line {
+    width: 260px;
+    display: flex;
+    justify-content: space-between;
 }

@@ -8,5 +8,7 @@
 @endsection
 
 @section('content')
-    <p>{{$textContent}}</p>
+    Добро пожаловать!<br>
+    Welcome!<br>
+    Willkommen!<br>
 @endsection

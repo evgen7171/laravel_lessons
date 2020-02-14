@@ -1,3 +1,11 @@
+<?php
+$homeRoute = route('home');
+$newsRoute = route('news');
+$categoriesRoute = route('categories');
+$addNewsRoute = route('news.add');
+$adminRoute = route('admin.admin');
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,13 +14,14 @@
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 </head>
 <body>
-
 @section('sidebar')
-    <ul class="menu">
-        <li><a href="/" class="menu_link">Главная</a></li>
-        <li><a href="/articles" class="menu_link">Статьи</a></li>
-        <li><a href="/info" class="menu_link">Справка</a></li>
-    </ul>
+        <ul class="menu">
+            <li><a href="<?=$homeRoute?>" class="menu__link">Главная</a></li>
+            <li><a href="<?=$newsRoute?>" class="menu__link">Новости</a></li>
+            <li><a href="<?=$categoriesRoute?>" class="menu__link">Категории новостей</a></li>
+            <li><a href="<?=$addNewsRoute?>" class="menu__link">Добавить новость</a></li>
+            <li><a href="<?=$adminRoute?>" class="menu__link">Админ</a></li>
+        </ul>
 @show
 <hr>
 <div class="container">
