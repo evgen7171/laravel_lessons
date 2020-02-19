@@ -4,19 +4,14 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">=Админ=</div>
+    <div class="caption">=Админ=</div>
 @endsection
 
 @section('content')
-    @if(isset($links))
-        @foreach($links as $link)
-            <a href="/admin/{{$link}}">{{$link}}</a>
-        @endforeach
-    @endif
+    <a href="{{route('admin.test1')}}">Тест 1</a>
+    <a href="{{route('admin.test2')}}">Тест 2</a>
     <h1>Добро пожаловать Admin!</h1>
     {{ isset($text) ? $text : '' }}
 @endsection
-
-{{--{{ $param or 'Default' }}--}}
 
 

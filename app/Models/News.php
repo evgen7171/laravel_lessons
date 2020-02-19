@@ -2,87 +2,105 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
-    private $news = [
-        [
+    private static $news = [
+        1 => [
             'id' => 1,
             'title' => 'Инопланетяне среди нас',
-            'categories' => [1],
-            'text' => 'В Саратове родился инопланетянин!'
+            'categories' => 1,
+            'text' => 'В Саратове родился инопланетянин!',
+            'isPrivate' => true
         ],
-        [
+        2 => [
             'id' => 2,
             'title' => 'О футболе',
-            'categories' => [2, 3],
-            'text' => 'В эту субботу состоится матч по футболу между командами "Крылья советов" и "Спутник"'
+            'categories' => 2,
+            'text' => 'В эту субботу состоится матч по футболу между командами "Крылья советов" и "Спутник"',
+            'isPrivate' => false
         ],
-        [
+        3 => [
             'id' => 3,
             'title' => 'О погоде',
-            'categories' => [3, 4],
-            'text' => 'А будет ли зима вообще? Синоптики прибегают к профессиональным гадалкам!'
+            'categories' => 2,
+            'text' => 'А будет ли зима вообще? Синоптики прибегают к профессиональным гадалкам!',
+            'isPrivate' => false
         ],
-        [
+        4 => [
             'id' => 4,
-            'title' => 'Toyota',
-            'categories' => [5, 6, 7],
-            'text' => 'Представители компании Toyota из-за Коронавируса отказались от производства в Китае'
+            'title' => 'О финансах',
+            'categories' => 3,
+            'text' => 'Курс евро/доллар = 1,08',
+            'isPrivate' => true
         ],
-        [
+        5 => [
+            'id' => 4,
+            'title' => 'О финансах',
+            'categories' => 3,
+            'text' => 'Курс фунт стерлингов/йена = 142,82',
+            'isPrivate' => true
+        ],
+        5 => [
             'id' => 5,
             'title' => 'Коронавирус. За или против?',
-            'categories' => [6, 7],
-            'text' => 'Новый вирус не страшнее обычной простуды. Редакция против некачественных товаров, но и против некачественного вируса...'
+            'categories' => 4,
+            'text' => 'Новый вирус не страшнее обычной простуды. Редакция против некачественных товаров, но и против некачественного вируса.',
+            'isPrivate' => false
         ],
     ];
-    private $categories = [
+    private static $categories = [
         0 => [
             'id' => 1,
             'name' => 'yellow',
             'caption' => 'желтая пресса'
         ],
         1 => [
-            'id' => 2,
+            'id' => 1,
             'name' => 'sport',
             'caption' => 'спорт'
         ],
         2 => [
-            'id' => 3,
-            'name' => 'actual',
-            'caption' => 'актуальное'
-        ],
-        3 => [
-            'id' => 4,
+            'id' => 2,
             'name' => 'weather',
             'caption' => 'погода'
         ],
-        4 => [
-            'id' => 5,
+        3 => [
+            'id' => 3,
             'name' => 'currency',
             'caption' => 'валюта'
         ],
-        5 => [
-            'id' => 6,
+        4 => [
+            'id' => 4,
             'name' => 'health',
             'caption' => 'здоровье'
-        ],
-        6 => [
-            'id' => 7,
-            'name' => 'foreign',
-            'caption' => 'внешняя политика'
         ]
     ];
 
+    public static function existIdx($idx)
+    {
+        return array_key_exists($idx, News::$news);
+    }
+
     /**
-     * метод получения всех новостей
+     * метод получения всех новостей из модели
      * @return array
      */
-    public function getAllNews()
+    public static function getAllNewsModel()
     {
-        return $this->news;
+        return self::$news;
+    }
+
+    /**
+     * метод получения всех новостей
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getAllNews()
+    {
+        return DB::table('news')->get();
     }
 
     /**
@@ -90,49 +108,193 @@ class News extends Model
      * @param $id - id новости
      * @return mixed
      */
-    public function getOneNews($id)
+    public static function getOneNewsModel($id)
     {
-        return $this->news[array_search($id, array_column($this->news, 'id'))];
+        return self::$news[array_search($id, array_column(self::$news, 'id'))];
+    }
+
+    public static function getOneNews($id)
+    {
+        return DB::table('news')->where('id', $id)->get()[0];
+    }
+
+    public static function getOneNewsModelIdx($idx)
+    {
+        return self::$news[$idx];
+    }
+
+    /**
+     * метод получения всех категорий новостей из модели
+     * @return array
+     */
+    public static function getCategoriesModel()
+    {
+        return self::$categories;
     }
 
     /**
      * метод получения всех категорий новостей
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getCategories()
+    {
+        $categories = DB::table('news_categories')->get();
+        return $categories;
+    }
+
+    /**
+     * метод получения названий категорий из модели
+     * @param $categoryName
+     * @return mixed
+     */
+    public static function getCaptionCategoryModel($categoryName)
+    {
+        $categories = self::$categories;
+        return array_column($categories, 'caption')
+        [array_search(
+            $categoryName, array_column($categories, 'name')
+        )];
+    }
+
+    /**
+     * метод получения названий категорий
+     * @param $categoryName
+     * @return mixed
+     */
+    public static function getCaptionCategory($categoryName)
+    {
+        return DB::table('news_categories')
+            ->where('name', $categoryName)
+            ->get('caption');
+    }
+
+    /**
+     * метод получения новостей по категории из модели
+     * @param $category
      * @return array
      */
-    public function getCategories()
+    public static function getCategoryNewsModel($category)
     {
-        return $this->categories;
-    }
-
-    public function getCaptionCategory($categoryName)
-    {
-        return array_column($this->categories, 'caption')
-        [array_search($categoryName, array_column($this->categories, 'name'))];
-    }
-
-    public function getCategoryNews($category)
-    {
-        $id_categories = $this->categories[array_search(
-            $category, array_column($this->categories, 'name')
+        $categories = $categories = self::$categories;
+        $category_id = $categories
+        [array_search(
+            $category, array_column($categories, 'name')
         )]['id'];
 
-        $arr = [];
-        foreach ($this->news as $news) {
-            if (in_array($id_categories, $news['categories'])) {
-                $arr[] = $news;
+        foreach (self::$news as $news) {
+            if (in_array($category_id, $news['categories'])) {
+                return $news;
             }
         }
-        return $arr;
     }
 
-    public function addNews($news)
+    /**
+     * метод получения новостей по категории
+     * @param $category
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getCategoryNews($category)
     {
-        $this->news[] = $news;
+        return DB::table('news')
+            ->join('news_categories', 'news.category_id', '=', 'news_categories.id')
+            ->where('name', $category)
+            ->get()[0];
     }
 
-    public function getLastId()
+    /**
+     * метод добавления новости
+     * @array $news - [title, category, text] - данные новости
+     */
+    public static function addNews($news)
     {
-        return array_column($this->news, 'id')
-        [count(array_column($this->news, 'id')) - 1];
+        if (!DB::connection('mysql')) {
+            dump('ошибка подключения базы данных');
+            return null;
+        }
+        $category = DB::table('news_categories')->where('caption', $news['category'])->get();
+        $isAdmin = !LoginController::isAdmin();
+        if (!count($category) and $isAdmin) {
+            dd('нет такой категории');
+        } elseif (!count($category) and !$isAdmin) {
+            $news['category_id'] = self::createCategory($news['category']);
+            self::createNews($news);
+        } else {
+            self::createNews($news);
+        }
+    }
+
+    /**
+     * метод создания категории в базе данных
+     */
+    public static function createCategory($category)
+    {
+        DB::table('news_category')->insert(
+            [
+                'name' => self::translit($category),
+                'caption' => $category
+            ]
+        );
+        return DB::table('news_category')->where('caption', $category)->get('id');
+    }
+
+    /**
+     * метод создания новости в базе данных
+     */
+    public static function createNews($news)
+    {
+        DB::table('news_category')->insert(
+            [
+                'title' => $news['title'],
+                'text' => $news['text'],
+                'category_id' => $news['category_id'],
+                'isPrivate' => $news['isPrivate']
+            ]
+        );
+    }
+
+    /**
+     * метод получения id последней новости
+     * @return mixed
+     */
+    public static function getLastIdModel()
+    {
+        $news = self::$news;
+        return array_column($news, 'id')
+        [count(array_column($news, 'id')) - 1];
+    }
+
+    /**
+     * транслиитерация
+     * @param $string
+     * @return string
+     */
+    public static function translit($string)
+    {
+        $converter = array(
+            'а' => 'a', 'б' => 'b', 'в' => 'v',
+            'г' => 'g', 'д' => 'd', 'е' => 'e',
+            'ё' => 'e', 'ж' => 'zh', 'з' => 'z',
+            'и' => 'i', 'й' => 'y', 'к' => 'k',
+            'л' => 'l', 'м' => 'm', 'н' => 'n',
+            'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'у' => 'u',
+            'ф' => 'f', 'х' => 'h', 'ц' => 'c',
+            'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
+            'ь' => '\'', 'ы' => 'y', 'ъ' => '\'',
+            'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
+
+            'А' => 'A', 'Б' => 'B', 'В' => 'V',
+            'Г' => 'G', 'Д' => 'D', 'Е' => 'E',
+            'Ё' => 'E', 'Ж' => 'Zh', 'З' => 'Z',
+            'И' => 'I', 'Й' => 'Y', 'К' => 'K',
+            'Л' => 'L', 'М' => 'M', 'Н' => 'N',
+            'О' => 'O', 'П' => 'P', 'Р' => 'R',
+            'С' => 'S', 'Т' => 'T', 'У' => 'U',
+            'Ф' => 'F', 'Х' => 'H', 'Ц' => 'C',
+            'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch',
+            'Ь' => '\'', 'Ы' => 'Y', 'Ъ' => '\'',
+            'Э' => 'E', 'Ю' => 'Yu', 'Я' => 'Ya',
+        );
+        return strtr($string, $converter);
     }
 }

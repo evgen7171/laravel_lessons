@@ -4,9 +4,12 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">={{$oneNews['title']}}=</div>
+    <div class="caption">=Главная=</div>
 @endsection
 
 @section('content')
-    {{$oneNews['text']}}
+    Добро пожаловать!<br>
+    Welcome!<br>
+    Willkommen!<br>
 @endsection
+
