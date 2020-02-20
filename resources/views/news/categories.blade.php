@@ -4,11 +4,13 @@
 
 @section('sidebar')
     @parent
-    <div style="border:1px solid black">=Категории новостей=</div>
+    <div class="caption">=Категории новостей=</div>
 @endsection
 
 @section('content')
-    @foreach($categories as $category)
+    @forelse($categories as $category)
         <a href="/news/categories/{{$category['name']}}">{{$category['caption']}}</a><br>
-    @endforeach
+    @empty
+        <p>Нет категорий</p>
+    @endforelse
 @endsection
