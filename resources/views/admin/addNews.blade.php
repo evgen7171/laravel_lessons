@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+    @errmes
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -20,7 +21,7 @@
                         <label for="newsCategory">Категория новости</label>
                         <select name="category" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item['id'] == old('category')) selected @endif value="{{ $item['id'] }}">{{ $item['category'] }}</option>
+                                <option @if ($item['id'] == old('category')) selected @endif value="{{ $item['id'] }}">{{ $item['caption'] }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse
@@ -36,7 +37,7 @@
                     <div class="form-check">
                         <input @if (old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
                         <label class="form-check-label" for="newsPrivate">
-                            Новость private?
+                            Новость приватная
                         </label>
                     </div>
 

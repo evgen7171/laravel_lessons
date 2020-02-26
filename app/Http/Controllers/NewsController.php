@@ -7,137 +7,43 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * получение всех новостей из модели
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getAllNews()
+    public function news()
     {
-//        $news = News::getAllNews();
-//        $news = $this->objectsToArrays($news);
-        $news = News::getAllNewsModel();
-        return view('news/all', [
-            'arr' => $news]);
+        return view('news.all', ['news' => News::$news]);
     }
 
-    /**
-     * получение новости из модели
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getOneNews($id)
+    public function categoryId($id)
     {
-//        $oneNews = News::getOneNews($id);
-//        $oneNews = $this->objectToArray($oneNews);
-        $oneNews = News::getOneNewsModel($id);
-        if ($oneNews) {
-            return view('news/one', [
-                'news' => $oneNews
-            ]);
-        } else {
-            redirect(route('news'));
+        $news = [];
+
+        foreach (News::$categories as $item) {
+            if ($item['name'] == $id) $id = $item['id'];
         }
+
+        if (array_key_exists($id, News::$categories)) {
+            $category = News::$categories[$id]['caption'];
+            foreach (News::$news as $item) {
+                if ($item['category_id'] == $id)
+                    $news[] = $item;
+            }
+            return view('news.oneCategory', ['news' => $news, 'category' => $category]);
+        } else
+            return redirect(route('news.categories'));
+
     }
 
-    /**
-     * получение новости из модели по индексу
-     * @param $idx
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-     */
-    public function getOneNewsIdx($idx)
+    public function categories()
     {
-        if (News::existIdx($idx)) {
-            return view('news/one', [
-                'news' => News::getOneNewsModelIdx($idx)
-            ]);
-        } else {
-            return redirect(route('news'));
-        }
+        return view('news.categories', ['categories' => News::$categories]);
     }
 
-    /**
-     * получение всех категорий из модели
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getCategories()
+    public function newsOne($id)
     {
-//        $categories = News::getCategories();
-//        $categories = $this->objectsToArrays($categories);
-        $categories = News::getCategoriesModel();
-        return view('news/categories', [
-            'categories' => $categories]);
+        if (array_key_exists($id, News::$news))
+            return view('news.one', ['news' => News::$news[$id]]);
+        else
+            return redirect(route('news.all'));
+
     }
 
-    /**
-     * получение категории из модели
-     * @param $category
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getCategoryNews($category)
-    {
-        $news = News::getCategoryNews($category);
-        $news = $this->objectToArray($news);
-        $category = News::getCaptionCategory($category);
-        $category = $this->objectToArray($category);
-
-//        $news = News::getCategoryNewsModel($category);
-//        $category = News::getCaptionCategoryModel($category);
-
-        dd($news);
-
-        return view('news/all', [
-            'category' => $category,
-            'arr' => $news
-        ]);
-    }
-
-    /**
-     * форма добавления новости
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function addForm()
-    {
-        return view('news/add');
-    }
-
-    /**
-     * метод добавление новости
-     */
-    public function add()
-    {
-        $news = [
-            'title' => $_POST['title'],
-            'category' => $_POST['category'],
-            'text' => $_POST['text']
-        ];
-        News::addNews($news);
-    }
-
-    /**
-     * преобразование объекта в массив
-     * @param $object
-     * @return array
-     */
-    public function objectToArray($object)
-    {
-        $arr = [];
-        foreach ($object as $key => $item) {
-            $arr[$key] = $item;
-        }
-        return $arr;
-    }
-
-    /**
-     * преобразование объектов в массивы
-     * @param $objects
-     * @return array
-     */
-    public function objectsToArrays($objects)
-    {
-        $arr = [];
-        foreach ($objects as $object) {
-            $arr[] = $this->objectToArray($object);
-        }
-        return $arr;
-    }
 }

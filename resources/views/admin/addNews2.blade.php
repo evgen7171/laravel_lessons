@@ -29,13 +29,14 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="1" id="newsPrivate">
                         <label class="form-check-label" for="newsPrivate">
-                            Новость private?
+                            Новость приватная
                         </label>
+                        <div class="form-group text-right">
+                            <input type="submit" class="btn alert-secondary-inv" value="Добавить новость" id="addNews">
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-outline-primary" value="Добавить новость" id="addNews">
-                    </div>
+
 
                 </form>
             </div>
