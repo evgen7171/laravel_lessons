@@ -24,7 +24,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.download') ? 'active' : '' }}" href="{{ route('admin.download') }}">
-                        <span class="nav-link-white">Загрузить данные</span></a>
+                        <span class="nav-link-white">Скачать данные</span></a>
                 </li>
 
 

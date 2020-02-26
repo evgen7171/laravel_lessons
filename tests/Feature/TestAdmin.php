@@ -9,14 +9,28 @@ use Tests\TestCase;
 class TestAdmin extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
+     * проверка пути
      * @return void
      */
-    public function testExample()
+    public function testPath()
     {
         $response = $this->get('/admin/index');
+        $response->assertOk();
+    }
 
+    public function testDownloadNews()
+    {
+        $response = $this->post('/admin/download', ['button' => 'Скачать новость', 'news' => 'О погоде']);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'title' => 'О погоде'
+            ]);
+    }
+
+    public function testAddNews()
+    {
+        $response = $this->get('/admin/addNews');
         $response->assertStatus(200);
     }
 }

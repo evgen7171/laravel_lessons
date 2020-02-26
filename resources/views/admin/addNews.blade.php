@@ -7,11 +7,11 @@
 @endsection
 
 @section('content')
-    @errmes
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{ route('admin.addNews') }}" method="post">
+                <form action="{{ route('admin.addNews') }}" method="post" accept-charset="UTF-8"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="newsTitle">Название новости</label>
@@ -21,27 +21,29 @@
                         <label for="newsCategory">Категория новости</label>
                         <select name="category" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item['id'] == old('category')) selected @endif value="{{ $item['id'] }}">{{ $item['caption'] }}</option>
+                                <option @if ($item == old('category')) selected
+                                        @endif value="{{ $item }}">{{ $item }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse
                         </select>
-
                     </div>
-
                     <div class="form-group">
                         <label for="newsText">Текст новости</label>
                         <textarea name="text" class="form-control" rows="5" id="newsText">{{ old('text') }}</textarea>
                     </div>
-
+                    <div class="form-group">
+                        <input type="file" name="image" id="file_id">
+                    </div>
                     <div class="form-check">
-                        <input @if (old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
+                        <input @if (old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input"
+                               type="checkbox" value="1" id="newsPrivate">
                         <label class="form-check-label" for="newsPrivate">
                             Новость приватная
                         </label>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <input type="submit" class="btn btn-outline-primary" value="Добавить новость" id="addNews">
                     </div>
 

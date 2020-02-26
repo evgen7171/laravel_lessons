@@ -36,11 +36,9 @@ Route::group([
     Route::get('/index', 'IndexController@index')->name('admin');
     Route::match(['post', 'get'], '/addNews', 'IndexController@addNews')->name('addNews');
     Route::get('/addNews2', 'IndexController@addNews2')->name('addNews2');
-    Route::get('/test1', 'IndexController@test1')->name('test1');
-    Route::get('/test2', 'IndexController@test2')->name('test2');
-    Route::get('/test3', 'IndexController@test3')->name('test3');
-    Route::match(['post', 'get'], '/download', 'IndexController@downloadData')->name('download');
+    Route::match(['post', 'get'], '/download', 'IndexController@downloadForm')->name('download');
 });
+
 
 Auth::routes();
 

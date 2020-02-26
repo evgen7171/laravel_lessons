@@ -25,16 +25,13 @@
     @yield('menu')
 
     <main class="py-4">
-
         @yield('content')
     </main>
 
     <div class="container text-right">
         <a href="{{url()->previous()}}" class="btn alert-secondary-inv">Вернуться</a>
     </div>
-    <div class="container text-right mt-1">
-        <a href="{{route('home')}}" class="btn alert-secondary-inv">На главную</a>
-    </div>
+
 </div>
 </body>
 </html>

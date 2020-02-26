@@ -17,7 +17,14 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->text('name')->comment('Псевдоним');
             $table->text('caption')->comment('Название');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+        });
+
+        Schema::table('news', function (Blueprint $table) {
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')->on('categories');
         });
     }
 
@@ -28,6 +35,10 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::table('news', function(Blueprint $table){
+            $table->dropForeign('news_category_id_foreign');
+        });
+
         Schema::dropIfExists('categories');
     }
 }

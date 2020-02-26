@@ -1,19 +1,11 @@
-<nav class="container breadcrumb-m" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        @if(request()->routeIs('news.all'))
-            {!!breadLink('Новости')!!}
-        @elseif(request()->routeIs('news.categories'))
-            {!!breadLink('Новости', route('news.all'))!!}
-            {!!breadLink('Категории')!!}
-        @elseif(request()->routeIs('news.categoryId') and isset($category))
-            {!!breadLink('Новости', route('news.all'))!!}
-            {!!breadLink('Категории', route('news.categories'))!!}
-            {!!breadLink($category)!!}
-        @elseif(request()->routeIs('news.one') and isset($category) and isset($news))
-            {!!breadLink('Новости', route('news.all'))!!}
-            {!!breadLink('Категории', route('news.categories'))!!}
-            {!!breadLink($category, route('news.categoryId'))!!}
-            {!!breadLink($news)!!}
-        @endif
-    </ol>
-</nav>
+@if(session('message') or session('errroMessage'))
+    <div class="container">
+        <div class="alert <?=session('messageError') ? 'alert-danger' : 'alert-success'?>  alert-dismissible fade show"
+             role="alert">
+            <strong>{{$message['title']}}</strong> {{$message['content']}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+@endif
