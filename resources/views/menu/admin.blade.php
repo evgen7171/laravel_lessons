@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm menu-bg menu-bg-admin">
     <div class="container">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -9,24 +9,22 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('') ? 'home' : '' }}" href="{{ route('home') }}">Главная</a>
+                    <a class="nav-link {{ request()->routeIs('') ? 'home' : '' }}" href="{{ route('home') }}">
+                        <span class="nav-link-white">Главная</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.addNews') ? 'active' : '' }}" href="{{ route('admin.addNews') }}">Добавить новость</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.addNews2') ? 'active' : '' }}" href="{{ route('admin.addNews2') }}">FORM</a>
+                    <a class="nav-link {{ request()->routeIs('admin.addNews') ? 'active' : '' }}" href="{{ route('admin.addNews') }}">
+                        <span class="nav-link-white">Добавить новость</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.test1') ? 'active' : '' }}" href="{{ route('admin.test1') }}">text</a>
+                    <a class="nav-link {{ request()->routeIs('admin.addNews2') ? 'active' : '' }}" href="{{ route('admin.addNews2') }}">
+                        <span class="nav-link-white">FORM</span></a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.test2') ? 'active' : '' }}" href="{{ route('admin.test2') }}">json</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.test3') ? 'active' : '' }}" href="{{ route('admin.test3') }}">image</a>
+                    <a class="nav-link {{ request()->routeIs('admin.download') ? 'active' : '' }}" href="{{ route('admin.download') }}">
+                        <span class="nav-link-white">Скачать данные</span></a>
                 </li>
 
 
@@ -37,24 +35,24 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}"><span class="nav-link-white">{{ __('Login') }}</span></a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}"><span class="nav-link-white">{{ __('Register') }}</span></a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            <span class="nav-link-white">{{ Auth::user()->name }} <span class="caret"></span></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                <span class="nav-link-white">{{ __('Logout') }}</span>
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

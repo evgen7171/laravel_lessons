@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
-class LoginController extends Controller
+class LoginController2 extends Controller
 {
     /**
      * метод формы

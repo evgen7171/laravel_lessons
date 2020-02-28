@@ -1,24 +1,2 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.menu {
-  display: flex;
-  border: 1px solid #000;
-}
-
-.menu li {
-  list-style-type: none;
-  margin: 10px;
-}
-
-.line {
-  width: 260px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.caption {
-  border: 1px solid #000;
-}
-
-.error {
-  color: red;
-}
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 

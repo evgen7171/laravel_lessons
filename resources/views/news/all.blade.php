@@ -1,25 +1,49 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Новости')
 
-@section('sidebar')
-    @parent
-    @if(!isset($category))
-        <div class="caption">=Новости=</div>
-        <div><a href="{{route('categories')}}" class="menu__link">Категории новостей</a></div>
-        <div><a href="{{route('news.add')}}" class="menu__link">Добавить новость</a></div>
-    @else
-        <div class="caption">={{$category}}=</div>
-    @endif
+@section('menu')
+    @include('menu.main')
 @endsection
 
 @section('content')
-    @forelse($arr as $idx => $item)
-        <h4>{{$item['title']}}</h4>
-        @if( !$item['isPrivate'] or \App\Http\Controllers\LoginController::isLogged() )
-            <a href="{{route('news.one', $item['id'])}}">Подробнее...</a><br>
-        @endif
-    @empty
-        <p>Нет новостей</p>
-    @endforelse
+    @include('menu.breadcrumbs')
+
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+
+            @forelse($news as $key=>$item)
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="heading_{{$key}}">
+                            <h2 class="mb-0">
+                                <div class=" {{!$key?'':'collapsed'}}"
+                                     type="button"
+                                     data-toggle="collapse"
+                                     data-target="#collapse_{{$key}}"
+                                     aria-expanded="{{!$key?'true':'false'}}"
+                                     aria-controls="collapse_{{$key}}">
+                                    <img src="{{asset($item->image)}}" alt="">
+                                    {!! textLink( $item->title, !$item->isPrivate?route('news.one', ['id'=>$item->id]):'#' ) !!}
+                                </div>
+                            </h2>
+                        </div>
+
+                        <div id="collapse_{{$key}}"
+                             class="collapse {{!$key?'show':''}}"
+                             aria-labelledby="heading_{{$key}}"
+                             data-parent="#accordionExample">
+                            <div class="card-body">
+                                {{shortText($item->text)}}<span>...<a
+                                            href="{{route('news.one', ['id'=>$item->id])}}">(подробнее)</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="card">Нет новостей</div>
+            @endforelse
+        </div>
+    </div>
+
 @endsection

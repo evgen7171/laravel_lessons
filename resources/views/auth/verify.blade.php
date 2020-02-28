@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', '>> News Block >')
+
+@section('menu')
+    @include('menu.main')
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -1,16 +1,30 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Одна новость')
 
-@section('sidebar')
-    @parent
-    <div class="caption">={{$news['title']}}=</div>
+@section('menu')
+    @include('menu.main')
 @endsection
 
 @section('content')
-    @if( !$news['isPrivate'] or \App\Http\Controllers\LoginController::isLogged() )
-        {{$news['text']}}
-    @else
-        <p>Только для авторизованных пользователей!</p>
-    @endif
+
+    @include('menu.breadcrumbs')
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ $news->title }}</div>
+                    <div class="card-body">
+                        @if (!$news->isPrivate)
+                            <p>{{ $news->text }}</p>
+                        @else
+                            <br>Нет прав!
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+

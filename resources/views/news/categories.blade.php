@@ -1,16 +1,26 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Новости')
 
-@section('sidebar')
-    @parent
-    <div class="caption">=Категории новостей=</div>
+@section('menu')
+    @include('menu.main')
 @endsection
 
 @section('content')
-    @forelse($categories as $category)
-        <a href="/news/categories/{{$category['name']}}">{{$category['caption']}}</a><br>
-    @empty
-        <p>Нет категорий</p>
-    @endforelse
+
+    @include('menu.breadcrumbs')
+
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            @forelse($categories as $category)
+                <a href="{{route('news.categoryId', $category->id)}}">
+                    <h5 class="card-header bg-white">
+                        {{$category->caption}}
+                    </h5>
+                </a>
+            @empty
+                <h5 class="card-header bg-white">Нет категорий</h5>
+            @endforelse
+        </div>
+    </div>
 @endsection
