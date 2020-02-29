@@ -12,78 +12,35 @@
 */
 
 
-//страница приветствия
-Route::get('/', 'HomeController@home')->name('home');
-//форма входа
-Route::get('/login', 'LoginController@loginForm')->name('login');
-Route::post('/login', 'LoginController@check')->name('login');
-//выход
-Route::get('/logout', 'LoginController@logout')->name('logout');
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-//страницы категорий новостей
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::group([
-    'prefix' => 'news'
+    'prefix' => 'news',
+    'as' => 'news.'
 ], function () {
-    //страница новостей
-    Route::get('/all', 'NewsController@getAllNews')->name('news');
-    //страница одной новости
-    Route::get('/{id}', 'NewsController@getOneNews')
-        ->where('id', '[0-9]+')
-        ->name('news.one');
-//    Route::get('/{id}', 'NewsController@getOneNewsIdx')
-//        ->where('id', '[0-9]+')
-//        ->name('news.one');
-
-    Route::get('/categories', 'NewsController@getCategories')->name('categories');
-    Route::get('/categories/{category}', 'NewsController@getCategoryNews')->name('category');
-
-    //страница добавления новости
+    Route::get('/all', 'NewsController@news')->name('all');
+    Route::get('/{id}', 'NewsController@newsOne')->name('one');
+    Route::get('/categories/all', 'NewsController@categories')->name('categories');
+    Route::get('/categories/{id}', 'NewsController@categoryId')->name('categoryId');
     Route::get('/add', 'NewsController@addForm')->name('news.add');
-    Route::post('/add', 'NewsController@add')->name('news.add');
 });
 
-
-//страницы админа
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'as' => 'admin.'
 ], function () {
-    Route::get('/admin', 'IndexController@index')->name('admin');
+    Route::get('/index', 'IndexController@index')->name('admin');
+    Route::match(['post', 'get'], '/addNews', 'IndexController@addNews')->name('addNews');
+    Route::get('/addNews2', 'IndexController@addNews2')->name('addNews2');
     Route::get('/test1', 'IndexController@test1')->name('test1');
     Route::get('/test2', 'IndexController@test2')->name('test2');
+    Route::get('/test3', 'IndexController@test3')->name('test3');
+    Route::match(['post', 'get'], '/download', 'IndexController@downloadData')->name('download');
 });
 
-/*
-todo домашка
-2. Добавить в проект шаблоны согласно подготовленному дизайну.
-3. Сделать шаблоны страниц авторизации и добавления новости.
-Шаблон должен быть сложным, но обязательно должен содержать в себе 4 блока: блок шапки сайта, подвала, место вывода контента и область меню.
+Auth::routes();
 
-f *. Страницу добавления новости.
-
- */
-/*
-todo что хочу сделать
-Сайт---
-Поиск по слову
-Поиск по тегу
-Поиск по категории
-Выдвигающейся меню
-Попап об ошибке
-Просмотр изображений как попап
-Просмотр блока новостей
-Добавление и удаление новостей
-(Редактор для добавления новости)
-Сохранение/открытие/удаление новостей в файле
-Просмотр новостей из кэша
-Динамический поиск..через vue
-Парсинг новостей хабра
-Добавление новостей в избранное
-RBAC (
-гость- может только смотреть новости,
-админ - может редактировать новости и юзеров,
-юзер - может редактировать новости)
-
-//Сборка
- */

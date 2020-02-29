@@ -2,79 +2,79 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginController2;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
-    private static $news = [
+    public static $news = [
         1 => [
             'id' => 1,
-            'title' => 'Инопланетяне среди нас',
-            'categories' => 1,
-            'text' => 'В Саратове родился инопланетянин!',
+            'title' => 'Н. А. Некрасов "Мужичок с ноготок"',
+            'category_id' => 1,
+            'text' => 'Однажды, в студеную зимнюю пору. Я из лесу вышел; был сильный мороз. Гляжу, поднимается медленно в гору. Лошадка, везущая хворосту воз. И шествуя важно, в спокойствии чинном, Лошадку ведет под уздцы мужичок В больших сапогах, в полушубке овчинном, В больших рукавицах... а сам с ноготок!',
             'isPrivate' => true
         ],
         2 => [
             'id' => 2,
             'title' => 'О футболе',
-            'categories' => 2,
+            'category_id' => 2,
             'text' => 'В эту субботу состоится матч по футболу между командами "Крылья советов" и "Спутник"',
             'isPrivate' => false
         ],
         3 => [
             'id' => 3,
             'title' => 'О погоде',
-            'categories' => 2,
+            'category_id' => 2,
             'text' => 'А будет ли зима вообще? Синоптики прибегают к профессиональным гадалкам!',
             'isPrivate' => false
         ],
         4 => [
             'id' => 4,
             'title' => 'О финансах',
-            'categories' => 3,
+            'category_id' => 3,
             'text' => 'Курс евро/доллар = 1,08',
             'isPrivate' => true
         ],
         5 => [
             'id' => 4,
             'title' => 'О финансах',
-            'categories' => 3,
+            'category_id' => 3,
             'text' => 'Курс фунт стерлингов/йена = 142,82',
             'isPrivate' => true
         ],
         5 => [
             'id' => 5,
             'title' => 'Коронавирус. За или против?',
-            'categories' => 4,
+            'category_id' => 4,
             'text' => 'Новый вирус не страшнее обычной простуды. Редакция против некачественных товаров, но и против некачественного вируса.',
             'isPrivate' => false
         ],
     ];
-    private static $categories = [
-        0 => [
-            'id' => 1,
-            'name' => 'yellow',
-            'caption' => 'желтая пресса'
-        ],
+    public static $categories = [
         1 => [
             'id' => 1,
-            'name' => 'sport',
-            'caption' => 'спорт'
+            'name' => 'other',
+            'caption' => 'разное'
         ],
         2 => [
             'id' => 2,
-            'name' => 'weather',
-            'caption' => 'погода'
+            'name' => 'sport',
+            'caption' => 'спорт'
         ],
         3 => [
             'id' => 3,
-            'name' => 'currency',
-            'caption' => 'валюта'
+            'name' => 'weather',
+            'caption' => 'погода'
         ],
         4 => [
             'id' => 4,
+            'name' => 'currency',
+            'caption' => 'валюта'
+        ],
+        5 => [
+            'id' => 5,
             'name' => 'health',
             'caption' => 'здоровье'
         ]
@@ -212,7 +212,7 @@ class News extends Model
             return null;
         }
         $category = DB::table('news_categories')->where('caption', $news['category'])->get();
-        $isAdmin = !LoginController::isAdmin();
+        $isAdmin = !LoginController2::isAdmin();
         if (!count($category) and $isAdmin) {
             dd('нет такой категории');
         } elseif (!count($category) and !$isAdmin) {
