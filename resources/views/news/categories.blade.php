@@ -13,9 +13,9 @@
     <div class="container">
         <div class="accordion" id="accordionExample">
             @forelse($categories as $category)
-                <a href="{{route('news.categoryId', $category['id'])}}">
+                <a href="{{route('news.categoryId', $category->id)}}">
                     <h5 class="card-header bg-white">
-                        {{$category['caption']}}
+                        {{$category->caption}}
                     </h5>
                 </a>
             @empty

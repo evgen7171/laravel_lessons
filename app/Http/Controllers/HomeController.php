@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\CustomServiceProvider;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dump(Auth::guest());
-        return view('home');
+//        dump(Auth::guest());
+        $images = CustomServiceProvider::getStoragePathFileNames('images/home');
+        return view('home', ['images' => $images]);
     }
 }

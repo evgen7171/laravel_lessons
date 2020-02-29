@@ -17,10 +17,18 @@ class TestNews extends TestCase
     public function testOne()
     {
         $response = $this->get('/news/1');
-        echo $response->headers;
-//        echo $response->header('Content-Type');
-//        Content-Type:  text/html; charset=UTF-8
         $response->assertStatus(200);
+    }
+    public function testNotFound()
+    {
+        $response = $this->get('/news');
+        $response->assertNotFound();
+    }
+
+    public function testOneContentType()
+    {
+        $response = $this->get('/news/1');
+        $response->assertHeader('Content-Type', 'text/html; charset=UTF-8');
     }
 
     public function testOneCategory()
@@ -33,6 +41,11 @@ class TestNews extends TestCase
     {
         $response = $this->get('/news/categories/all');
         $response->assertStatus(200);
+    }
+    public function testLocation()
+    {
+        $response = $this->get('/news/news');
+        $response->assertLocation('/news/all');
     }
 
 }

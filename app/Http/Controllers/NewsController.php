@@ -2,48 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
+    /**
+     * показать все новости
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function news()
     {
-        return view('news.all', ['news' => News::$news]);
+        $news = News::query()->paginate(6);
+        return view('news.all', ['news' => $news]);
     }
 
-    public function categoryId($id)
+    public function newsOne(News $news)
     {
-        $news = [];
-
-        foreach (News::$categories as $item) {
-            if ($item['name'] == $id) $id = $item['id'];
-        }
-
-        if (array_key_exists($id, News::$categories)) {
-            $category = News::$categories[$id]['caption'];
-            foreach (News::$news as $item) {
-                if ($item['category_id'] == $id)
-                    $news[] = $item;
-            }
-            return view('news.oneCategory', ['news' => $news, 'category' => $category]);
-        } else
-            return redirect(route('news.categories'));
-
+        $category = $news->belongsTo('App\Models\Categories', 'category_id')->get()[0];
+        return view('news.one', ['category' => $category, 'news' => $news]);
     }
 
-    public function categories()
+    public function getNewsFromFile()
     {
-        return view('news.categories', ['categories' => News::$categories]);
+        return json_decode(Storage::disk('local')->get('news.json'), true);
     }
-
-    public function newsOne($id)
-    {
-        if (array_key_exists($id, News::$news))
-            return view('news.one', ['news' => News::$news[$id]]);
-        else
-            return redirect(route('news.all'));
-
-    }
-
 }

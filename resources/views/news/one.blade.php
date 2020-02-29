@@ -7,16 +7,20 @@
 @endsection
 
 @section('content')
+
+    @include('menu.breadcrumbs')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ $news['title'] }}</div>
+                    <div class="card-header">{{ $news->title }}</div>
                     <div class="card-body">
-                        @if (!$news['isPrivate'])
-                            <p>{{ $news['text'] }}</p>
+                        @if (!$news->isPrivate)
+                            <img src="{{asset($news->image)}}" alt="" class="card-img mb-2">
+                            <p>{{ $news->text }}</p>
                         @else
-                            <br>Нет прав!
+                            @include('news.noRules')
                         @endif
                     </div>
                 </div>

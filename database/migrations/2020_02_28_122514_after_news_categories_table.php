@@ -13,7 +13,11 @@ class AfterNewsCategoriesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('news', function (Blueprint $table) {
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')->on('categories');
+        });
     }
 
     /**
@@ -23,6 +27,8 @@ class AfterNewsCategoriesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('news', function(Blueprint $table){
+            $table->dropForeign('news_category_id_foreign');
+        });
     }
 }

@@ -7,42 +7,48 @@
 @endsection
 
 @section('content')
-    @errmes
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{ route('admin.addNews') }}" method="post">
+                <form enctype="multipart/form-data" action=" @if (!$news->id){{ route('admin.addNews') }} @else {{ route('admin.saveNews', $news) }}@endif" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="newsTitle">Название новости</label>
-                        <input name="title" type="text" class="form-control" id="newsTitle" value="{{ old('title') }}">
+                        <input name="title" type="text" class="form-control" id="newsTitle"
+                               value="{{ $news->title ?? old('title') }}">
                     </div>
                     <div class="form-group">
                         <label for="newsCategory">Категория новости</label>
-                        <select name="category" class="form-control" id="newsCategory">
+                        <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($item['id'] == old('category')) selected @endif value="{{ $item['id'] }}">{{ $item['caption'] }}</option>
+                                <option @if ($category->caption == $item->caption) selected @endif value="{{ $item->caption }}">{{ $item->caption }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse
                         </select>
-
                     </div>
-
                     <div class="form-group">
                         <label for="newsText">Текст новости</label>
-                        <textarea name="text" class="form-control" rows="5" id="newsText">{{ old('text') }}</textarea>
+                        <textarea name="text" class="form-control" rows="5" id="newsText">{{ $news->text ?? old('text') }}</textarea>
+                    </div>
+                    <img src="{{asset($news->image)}}" alt="">
+                    <div class="form-group">
+                        <input type="file" name="image">
                     </div>
 
+
                     <div class="form-check">
-                        <input @if (old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
+                        <input @if ($news->isPrivate == 1 || old('isPrivate') == 1) checked @endif name="isPrivate" class="form-check-input" type="checkbox" value="1" id="newsPrivate">
                         <label class="form-check-label" for="newsPrivate">
                             Новость приватная
                         </label>
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" class="btn btn-outline-primary" value="Добавить новость" id="addNews">
+                        <button class="form-control" type="submit">
+                            @if ($news->id) Изменить @else Добавить @endif
+                        </button>
+
                     </div>
 
                 </form>

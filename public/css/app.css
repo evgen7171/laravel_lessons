@@ -10889,7 +10889,7 @@ a.text-dark:focus {
 }
 
 .menu-bg-admin {
-  background: url(/images/bg15.png?5c7704ea7326fa4f3a8e955c74ed5248);
+  background: url(/images/bg.png?5c7704ea7326fa4f3a8e955c74ed5248);
 }
 
 .menu-bg:hover {
@@ -10922,3 +10922,14 @@ a.text-dark:focus {
   background-color: #4d4d4d;
 }
 
+.card-img-icon {
+    border: 1px solid #000;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-img-icon img{
+    width: 100%;
+}

@@ -23,18 +23,24 @@
 <div id="app">
 
     @yield('menu')
-
+    @if (session('success'))
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
     <main class="py-4">
-
         @yield('content')
     </main>
 
     <div class="container text-right">
         <a href="{{url()->previous()}}" class="btn alert-secondary-inv">Вернуться</a>
     </div>
-    <div class="container text-right mt-1">
-        <a href="{{route('home')}}" class="btn alert-secondary-inv">На главную</a>
-    </div>
+
 </div>
 </body>
 </html>

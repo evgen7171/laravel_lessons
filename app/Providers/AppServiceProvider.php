@@ -25,9 +25,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
-        Blade::directive('errmes', function () {
-            return "<p class='container' style=\"color:red;\">страница в разработке!<p>";
-        });
     }
 }

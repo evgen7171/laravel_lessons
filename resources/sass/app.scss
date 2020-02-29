@@ -11,8 +11,9 @@
 .menu-bg {
     background: linear-gradient(45deg, #d31c39, #5091c2);
 }
+
 .menu-bg-admin {
-    background: url(public/images/bg15.png) ;
+    background: url(/storage/images/bg.png);
 }
 
 .menu-bg:hover {
@@ -22,15 +23,19 @@
 .nav-link-white {
     color: #c9c9c9;
 }
-.nav-link-white:hover{
+
+.nav-link-white:hover {
     color: #e8e8e8;
 }
-.nav-link-white.active{
+
+.nav-link-white.active {
     color: #ffffff;
 }
-.breadcrumb-m{
+
+.breadcrumb-m {
     margin-top: -1rem;
 }
+
 .alert-secondary-inv {
     background-color: #e2e2e2;
     color: #4d4d4d;
@@ -39,4 +44,8 @@
 .alert-secondary-inv:hover {
     color: #e2e2e2;
     background-color: #4d4d4d;
+}
+
+.card-img-icon {
+    border: 1px solid #000;
 }

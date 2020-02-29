@@ -8,12 +8,12 @@
         @elseif(request()->routeIs('news.categoryId') and isset($category))
             {!!breadLink('Новости', route('news.all'))!!}
             {!!breadLink('Категории', route('news.categories'))!!}
-            {!!breadLink($category)!!}
+            {!!breadLink($category->caption)!!}
         @elseif(request()->routeIs('news.one') and isset($category) and isset($news))
             {!!breadLink('Новости', route('news.all'))!!}
             {!!breadLink('Категории', route('news.categories'))!!}
-            {!!breadLink($category, route('news.categoryId'))!!}
-            {!!breadLink($news)!!}
+            {!!breadLink($category->caption, route('news.categoryId',$category->id))!!}
+            {!!breadLink($news->title)!!}
         @endif
     </ol>
 </nav>
