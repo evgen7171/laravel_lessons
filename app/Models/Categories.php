@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\DB;
 
 class Categories extends Model
 {
-    //
+    protected $fillable = ['name', 'caption'];
 }

@@ -21,7 +21,7 @@
                         <label for="newsCategory">Категория новости</label>
                         <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
-                                <option @if ($category->caption == $item->caption) selected @endif value="{{ $item->caption }}">{{ $item->caption }}</option>
+                                <option @if ($category and $category->id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->caption }}</option>
                             @empty
                                 <h2>Нет категории</h2>
                             @endforelse

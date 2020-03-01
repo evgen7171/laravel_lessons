@@ -18,13 +18,25 @@
                        href="{{ route('admin.addNews') }}">
                         <span class="nav-link-white">Добавить новость</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.addCategory') ? 'active' : '' }}"
+                       href="{{ route('admin.addCategory') }}">
+                        <span class="nav-link-white">Добавить категорию</span></a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.download') ? 'active' : '' }}"
                        href="{{ route('admin.download') }}">
                         <span class="nav-link-white">Скачать данные</span></a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ route('admin.news') }}"><span class="nav-link-white {{ request()->routeIs('admin.news') ? 'active' : '' }}">Админка (новости)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ route('admin.categories') }}"><span class="nav-link-white {{ request()->routeIs('admin.categories') ? 'active' : '' }}">Админка (категории)</span></a>
+                </li>
 
             </ul>
 
