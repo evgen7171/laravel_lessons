@@ -14,8 +14,8 @@
                             class="nav-link-white {{ request()->routeIs('home')?'active':'' }}">Главная</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.addNews') ? 'active' : '' }}"
-                       href="{{ route('admin.addNews') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.news.create') ? 'active' : '' }}"
+                       href="{{ route('admin.news.create') }}">
                         <span class="nav-link-white">Добавить новость</span></a>
                 </li>
                 <li class="nav-item">
@@ -31,11 +31,13 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="{{ route('admin.news') }}"><span class="nav-link-white {{ request()->routeIs('admin.news') ? 'active' : '' }}">Админка (новости)</span></a>
+                       href="{{ route('admin.news.index') }}"><span
+                            class="nav-link-white {{ request()->routeIs('admin.news.index') ? 'active' : '' }}">Админка (новости)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="{{ route('admin.categories') }}"><span class="nav-link-white {{ request()->routeIs('admin.categories') ? 'active' : '' }}">Админка (категории)</span></a>
+                       href="{{ route('admin.categories') }}"><span
+                            class="nav-link-white {{ request()->routeIs('admin.categories') ? 'active' : '' }}">Админка (категории)</span></a>
                 </li>
 
             </ul>

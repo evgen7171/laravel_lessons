@@ -8,12 +8,13 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Local
+
 .menu-bg {
     background: linear-gradient(45deg, #d31c39, #5091c2);
 }
 
 .menu-bg-admin {
-    background: url(/storage/images/bg.png);
+    background: url(/images/bg.png?5c7704ea7326fa4f3a8e955c74ed5248);
 }
 
 .menu-bg:hover {
@@ -48,4 +49,16 @@
 
 .card-img-icon {
     border: 1px solid #000;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-img-icon img{
+    width: 100%;
+}
+.form-group-flex{
+    display: flex;
+    align-items: center;
 }

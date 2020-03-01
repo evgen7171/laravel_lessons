@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e31af230-d5ec-438f-8bb7-655f22a8e1ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/addCategory.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/news.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/IndexController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Categories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/addNews.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/addNews.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/news.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menu/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menu/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menu/message.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +277,7 @@
       <workItem from="1582887133171" duration="430000" />
       <workItem from="1582887831808" duration="26190000" />
       <workItem from="1583089448255" duration="13000" />
-      <workItem from="1583089479152" duration="5695000" />
+      <workItem from="1583089479152" duration="10112000" />
     </task>
     <servers />
   </component>
