@@ -22,7 +22,11 @@ Route::group([
     'as' => 'news.'
 ], function () {
 <<<<<<< HEAD
+    Route::get('/all', 'NewsController@news')->name('all');
+=======
+<<<<<<< HEAD
     Route::get('/all', 'NewsController@news')->name('news');
+>>>>>>> master
     Route::get('/{news}', 'NewsController@newsOne')->name('one');
     Route::get('/categories/all', 'CategoriesController@categories')->name('categories');
     Route::get('/categories/{id}', 'CategoriesController@categoryId')->name('categoryId');
@@ -41,13 +45,24 @@ Route::group([
     'as' => 'admin.'
 ], function () {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     Route::get('/index', 'NewsController@all')->name('news');
+>>>>>>> master
     Route::match(['post', 'get'], '/download', 'IndexController@downloadForm')->name('download');
 
+    Route::get('/news', 'NewsController@all')->name('news');
     Route::match(['post', 'get'], '/addNews', 'NewsController@addNews')->name('addNews');
     Route::get('/updateNews{news}', 'NewsController@update')->name('updateNews');
     Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews');
     Route::get('/deleteNews{news}', 'NewsController@delete')->name('deleteNews');
+
+    Route::get('/categories', 'CategoriesController@all')->name('categories');
+    Route::match(['post', 'get'], '/addCategory', 'CategoriesController@addCategory')->name('addCategory');
+    Route::get('/updateCategory{news}', 'CategoriesController@update')->name('updateCategory');
+    Route::post('/saveCategory{news}', 'CategoriesController@save')->name('saveCategory');
+    Route::get('/deleteCategory{category}', 'CategoriesController@delete')->name('deleteCategory');
+
 });
 
 =======

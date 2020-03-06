@@ -27,10 +27,14 @@
                         <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
 <<<<<<< HEAD
+                                <option @if ($category and $category->id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->caption }}</option>
+=======
+<<<<<<< HEAD
                                 <option @if ($category->caption == $item->caption) selected @endif value="{{ $item->caption }}">{{ $item->caption }}</option>
 =======
                                 <option @if ($item == old('category')) selected
                                         @endif value="{{ $item }}">{{ $item }}</option>
+>>>>>>> master
 >>>>>>> master
                             @empty
                                 <h2>Нет категории</h2>

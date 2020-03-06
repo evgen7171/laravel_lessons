@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
+<<<<<<< HEAD
+    protected $fillable = ['title', 'text', 'image', 'category_id'];
+=======
     /**
      * метод получения всех новостей
      * @return \Illuminate\Support\Collection
@@ -231,5 +234,6 @@ class News extends Model
         return DB::table('news_category')->where('caption', $category)->get('id');
     }
 
+>>>>>>> master
 >>>>>>> master
 }
