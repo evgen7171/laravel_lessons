@@ -17,9 +17,16 @@
                     <div class="card-header">{{ $news->title }}</div>
                     <div class="card-body">
                         @if (!$news->isPrivate)
+<<<<<<< HEAD
+                            <img src="{{asset($news->image)}}" alt="" class="card-img mb-2">
+                            <p>{{ $news->text }}</p>
+                        @else
+                            @include('news.noRules')
+=======
                             <p>{{ $news->text }}</p>
                         @else
                             <br>Нет прав!
+>>>>>>> master
                         @endif
                     </div>
                 </div>

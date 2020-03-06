@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,21 @@ class NewsController extends Controller
      */
     public function news()
     {
+<<<<<<< HEAD
+        $news = News::query()->paginate(6);
+        return view('news.all', ['news' => $news]);
+    }
+
+    public function newsOne(News $news)
+    {
+        $category = $news->belongsTo('App\Models\Categories', 'category_id')->get()[0];
+        return view('news.one', ['category' => $category, 'news' => $news]);
+    }
+
+    public function getNewsFromFile()
+    {
+        return json_decode(Storage::disk('local')->get('news.json'), true);
+=======
         return view('news.all', ['news' => News::getAllNews()]);
     }
 
@@ -65,5 +81,6 @@ class NewsController extends Controller
     public static function getCategoriesFromFile(): array
     {
         return json_decode(Storage::disk('local')->get('categories.json'), true);
+>>>>>>> master
     }
 }

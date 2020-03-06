@@ -39,7 +39,11 @@ class NewsSeeder extends Seeder
     {
         $arr = [];
         $imagesPath = 'images/fakers';
+<<<<<<< HEAD
+        $dir = scandir(public_path('storage/'.$imagesPath));
+=======
         $dir = scandir(storage_path($imagesPath));
+>>>>>>> master
         foreach ($dir as $item) {
             if ($item == '.' or $item == '..') {
                 continue;
