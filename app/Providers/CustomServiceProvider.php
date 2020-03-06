@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class CustomServiceProvider extends ServiceProvider
@@ -24,7 +23,7 @@ class CustomServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //view()->share('message','тестовое сообщение')
     }
 
 
@@ -92,4 +91,5 @@ class CustomServiceProvider extends ServiceProvider
         $string = str_replace($exceptChars, "", $string);
         return strtr($string, $converter);
     }
+
 }

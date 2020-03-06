@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\News;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -10,45 +11,47 @@ use Tests\DuskTestCase;
 
 class NewsFormTest extends DuskTestCase
 {
+    private $news;
     /**
      * A Dusk test example.
      *
      * @return void
      */
-    public function testWrongTitleAdd()
+    public function testWrongTitle()
     {
+        $this->news = News::query()->find(rand(1, News::all()->count()));
+
         $this->browse(function (Browser $browser) {
-            $browser->visit('/admin/news/create')
-                ->assertSeeIn('category_id', 'О погоде')
-                ->type('title', '12')
-                ->press('Добавить')
-                ->assertSee('Отсутствуют хэштеги')
-                ->assertPathIs('/admin/news/create');
+            $browser->visit(route('admin.news.edit', $this->news))
+                ->type('title', '')
+                ->press('Изменить')
+                ->assertSee('Поле Название новости обязательно для заполнения.')
+                ->assertPathIs('/admin/news/{$this->news->id}/edit');
         });
     }
 
-    public function testWrongTextAdd()
+    public function testWrongText()
     {
+        $this->news = News::query()->find(rand(1, News::all()->count()));
+
         $this->browse(function (Browser $browser) {
-            $browser->visit('/admin/news/create')
-                ->assertSeeIn('category_id', 'О погоде')
-                ->type('title', 'Новость' . rand(1, 1000))
-                ->type('text', 'lorem ipsum...')
-                ->press('Добавить')
-                ->assertSee('Количество символов в поле Название новости должно быть не менее 5.')
-                ->assertPathIs('/admin/news/create');
+            $browser->visit(route('admin.news.edit', $this->news))
+                ->type('text', '12)')
+                ->press('Изменить')
+                ->assertSee('Количество символов в поле Текст новости должно быть не менее 5.')
+                ->assertPathIs('/admin/news/{$this->news->id}/edit');
         });
     }
 
-    public function testSuccesAdd()
+    public function testSuccess()
     {
+        $this->news = News::query()->find(rand(1, News::all()->count()));
+
         $this->browse(function (Browser $browser) {
-            $browser->visit('/admin/news/create')
-                ->assertSeeIn('category_id', 'О погоде')
-                ->type('title', 'Новость' . rand(1, 1000))
-                ->type('text', 'lorem ipsum... #lorem')
-                ->press('Добавить')
-                ->assertSee('Новость успешно создана!')
+            $browser->visit(route('admin.news.edit', $this->news))
+                ->assertSeeIn('option', 'О погоде')
+                ->press('Изменить')
+                ->assertSee('Новость успешно изменена!')
                 ->assertPathIs('/admin/news');
         });
     }

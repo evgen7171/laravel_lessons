@@ -36,3 +36,23 @@ if (!function_exists('textLink')) {
             '<a href="' . $link . '">' . $text . '</a>';
     }
 }
+if (!function_exists('showErrors')) {
+    function showErrors($errors, string $field)
+    {
+        if ($errors->has($field)) {
+            $html = '<div class="alert alert-danger" role="alert">';
+            foreach ($errors->get($field) as $error) {
+                $html .= $error;
+            }
+            $html .= '</div>';
+            return $html;
+        }
+//        @if ($errors->has($field))
+//            <div class="alert alert-danger" role="alert">
+//                @foreach($errors->get($field) as $error)
+//                    {{$error}}
+//                @endforeach
+//            </div>
+//            @endif
+    }
+}
