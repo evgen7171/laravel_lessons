@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="{{ route('admin.news') }}"><span class="nav-link-white {{ request()->routeIs('admin.news') ? 'active' : '' }}">Админка</span></a>
+                       href="{{ route('admin.news.index') }}"><span class="nav-link-white {{ request()->routeIs('admin.news.index') ? 'active' : '' }}">Админка</span></a>
                 </li>
             </ul>
 
