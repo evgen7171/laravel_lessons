@@ -23,6 +23,7 @@
 <div id="app">
 
     @yield('menu')
+<<<<<<< HEAD
     @if (session('success'))
         <div class="container">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -33,6 +34,9 @@
             </div>
         </div>
     @endif
+=======
+
+>>>>>>> master
     <main class="py-4">
         @yield('content')
     </main>

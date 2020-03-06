@@ -11,6 +11,7 @@
 
 .menu-bg {
     background: linear-gradient(45deg, #d31c39, #5091c2);
+<<<<<<< HEAD
 }
 
 .menu-bg-admin {
@@ -42,10 +43,39 @@
     color: #4d4d4d;
 }
 
+=======
+}
+.menu-bg-admin {
+    background: url(public/images/bg15.png) ;
+}
+
+.menu-bg:hover {
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.075);
+}
+
+.nav-link-white {
+    color: #c9c9c9;
+}
+.nav-link-white:hover{
+    color: #e8e8e8;
+}
+.nav-link-white.active{
+    color: #ffffff;
+}
+.breadcrumb-m{
+    margin-top: -1rem;
+}
+.alert-secondary-inv {
+    background-color: #e2e2e2;
+    color: #4d4d4d;
+}
+
+>>>>>>> master
 .alert-secondary-inv:hover {
     color: #e2e2e2;
     background-color: #4d4d4d;
 }
+<<<<<<< HEAD
 
 .card-img-icon {
     border: 1px solid #000;
@@ -62,3 +92,5 @@
     display: flex;
     align-items: center;
 }
+=======
+>>>>>>> master

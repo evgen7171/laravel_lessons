@@ -10889,7 +10889,11 @@ a.text-dark:focus {
 }
 
 .menu-bg-admin {
+<<<<<<< HEAD
   background: url(/images/bg.png?5c7704ea7326fa4f3a8e955c74ed5248);
+=======
+  background: url(/images/bg15.png?5c7704ea7326fa4f3a8e955c74ed5248);
+>>>>>>> master
 }
 
 .menu-bg:hover {
@@ -10922,6 +10926,7 @@ a.text-dark:focus {
   background-color: #4d4d4d;
 }
 
+<<<<<<< HEAD
 .card-img-icon {
   border: 1px solid #000;
   width: 50px;
@@ -10939,4 +10944,9 @@ a.text-dark:focus {
   display: flex;
   align-items: center;
 }
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> master
+>>>>>>> master

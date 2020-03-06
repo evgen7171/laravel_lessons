@@ -21,10 +21,21 @@ Route::group([
     'prefix' => 'news',
     'as' => 'news.'
 ], function () {
+<<<<<<< HEAD
     Route::get('/all', 'NewsController@news')->name('all');
+=======
+<<<<<<< HEAD
+    Route::get('/all', 'NewsController@news')->name('news');
+>>>>>>> master
     Route::get('/{news}', 'NewsController@newsOne')->name('one');
     Route::get('/categories/all', 'CategoriesController@categories')->name('categories');
     Route::get('/categories/{id}', 'CategoriesController@categoryId')->name('categoryId');
+=======
+    Route::get('/all', 'NewsController@news')->name('all');
+    Route::get('/{id}', 'NewsController@newsOne')->name('one');
+    Route::get('/categories/all', 'NewsController@categories')->name('categories');
+    Route::get('/categories/{id}', 'NewsController@categoryId')->name('categoryId');
+>>>>>>> master
     Route::get('/add', 'NewsController@addForm')->name('news.add');
 });
 
@@ -33,6 +44,11 @@ Route::group([
     'namespace' => 'Admin',
     'as' => 'admin.'
 ], function () {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    Route::get('/index', 'NewsController@all')->name('news');
+>>>>>>> master
     Route::match(['post', 'get'], '/download', 'IndexController@downloadForm')->name('download');
 
 //    Route::get('/news', 'NewsController@all')->name('news');
@@ -51,6 +67,14 @@ Route::group([
 
 });
 
+=======
+    Route::get('/index', 'IndexController@index')->name('admin');
+    Route::match(['post', 'get'], '/addNews', 'IndexController@addNews')->name('addNews');
+    Route::get('/addNews2', 'IndexController@addNews2')->name('addNews2');
+    Route::match(['post', 'get'], '/download', 'IndexController@downloadForm')->name('download');
+});
+
+>>>>>>> master
 
 Auth::routes();
 
