@@ -2,18 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e31af230-d5ec-438f-8bb7-655f22a8e1ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/addCategory.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/news.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/addNews2.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/data/image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/data/image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/data/image3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/data/image4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/2019-12-27-prognoz-kazahstan-500x300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/2ТЭ116У-0018-500x300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/Vnedorozhnik-UAZ-Patriot-500x300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/izobrazhenie-11-500x300.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/training-locations-billboard-sm-500x300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/unnamed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/fakers/Без названия.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/home/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/home/img1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/home/img2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/images/home/img3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/CustomServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/CustomServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_25_103953_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_25_103953_create_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoriesSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/NewsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/NewsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/storage/images/bg15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/addNews.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/addNews.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/loginForm.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/menu/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menu/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/news/all.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/all.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/news/one.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/one.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/news/oneCategory.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/oneCategory.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,9 +52,6 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable path="composer" />
-    </execution>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -162,8 +188,25 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1XhqqESNZCRNkxpv6uA45WncVa1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="temp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="temp" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -198,6 +241,18 @@
       <recent name="D:\OSPanel\domains\laravel\storage\app\public\images\home" />
       <recent name="D:\OSPanel\domains\laravel\storage\app\public" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="PHPUnit.TestAdmin.testAddNews">
     <configuration name="TestAdmin" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -283,11 +338,38 @@
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="243000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="250" y="168" width="1089" height="675" extended-state="0" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33916423" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Migrations" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3296501" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/laravel_lessons" />
     </ignored-roots>

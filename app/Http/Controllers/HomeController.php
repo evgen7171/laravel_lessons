@@ -26,7 +26,11 @@ class HomeController extends Controller
     public function index()
     {
 //        dump(Auth::guest());
+<<<<<<< HEAD
         $images = CustomServiceProvider::getStoragePathFileNames('images/home');
+=======
+        $images = CustomServiceProvider::getPathFileNames(storage_path('images/home'));
+>>>>>>> master
         return view('home', ['images' => $images]);
     }
 }
