@@ -20,24 +20,34 @@ class NewsController extends Controller
 
     }
 
+    public function edit(News $news)
+    {
+        return view('admin.addNews', [
+            'news' => $news,
+            'category' => $news->category(),
+            'categories' => Categories::all()
+        ]);
+    }
+
     public function update(Request $request, News $news)
     {
-        if ($request->isMethod('PATCH')) {
-            return view('admin.addNews', [
-                'news' => $news,
-                'category' => $news->belongsTo('App\Models\Categories', 'category_id')->get()[0],
-                'categories' => Categories::all()
-            ]);
-        } else if ($request->isMethod('PUT')) {
-            if ($request->file('image')) {
-                $path = Storage::putFile('public', $request->file('image'));
-                $url = Storage::url($path);
-                $news->image = $url;
-            }
+        $this->validate($request, News::rules(), [], News::attributeNames());
+        if ($request->file('image')) {
+            $path = Storage::putFile('public', $request->file('image'));
+            $url = Storage::url($path);
+            $news->image = $url;
+        }
 
-            $news->fill($request->all());
-            $news->save();
-            return redirect()->route('admin.news.index')->with('success', 'Новость успешно изменена!');
+
+        $result = $news->fill($request->except('_token'))->save();
+
+        if ($result) {
+            return redirect()
+                ->route('admin.news.index')->with('success', 'Новость успешно изменена!');
+        } else {
+            $request->flash();
+            return redirect()
+                ->route('admin.news.create')->with('error', 'Ошибка изменения новости!');
         }
     }
 
@@ -49,37 +59,35 @@ class NewsController extends Controller
         }
     }
 
-    public function create(Request $request, News $news)
+    public function create()
     {
-        if ($request->isMethod('GET')) {
-            if (!count($request->all())) {
-                $news = new News();
-                return view('admin.addNews', [
-                    'news' => $news,
-                    'category' => '',
-                    'categories' => Categories::all()
-                ]);
-            }
-
-            $url = null;
-            $news = new News();
-
-            if ($request->file('image')) {
-                $path = $request->file('image')->store('public');
-                $news->image = Storage::url($path);
-            }
-            $news->fill($request->except('_token'));
-            $news->save();
-
-            return redirect()->route('admin.news.index')->with('success', 'Новость успешно создана!');
-        }
-
-        $category = $news->category_id ? $news->belongsTo('App\Models\Categories', 'category_id')->get()[0] : [];
-
+        $news = new News();
         return view('admin.addNews', [
             'news' => $news,
-            'category' => $category,
-            'categories' => Categories::query()->select(['id', 'caption'])->get()
+            'category' => '',
+            'categories' => Categories::all()
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $news = new News();
+        $url = null;
+        $this->validate($request, News::rules(), [], News::attributeNames());
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('public');
+            $news->image = Storage::url($path);
+        }
+
+        $result = $news->fill($request->all())->save();
+
+        if ($result) {
+            return redirect()
+                ->route('admin.news.index')->with('success', 'Новость успешно создана!');
+        } else {
+            $request->flash();
+            return redirect()
+                ->route('admin.news.create')->with('error', 'Ошибка базы данных: новость не создана!');
+        }
     }
 }

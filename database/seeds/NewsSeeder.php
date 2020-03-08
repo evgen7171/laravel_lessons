@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\News;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -14,8 +15,11 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        $categoriesCount = DB::table('categories')->count() ?: 1;
-        DB::table('news')->insert($this->getFakerNews(20, $categoriesCount));
+
+        factory(News::class, 10)->create();
+
+//        $categoriesCount = DB::table('categories')->count() ?: 1;
+//        DB::table('news')->insert($this->getFakerNews(20, $categoriesCount));
     }
 
     private function getFakerNews(int $count, int $categoriesCount)

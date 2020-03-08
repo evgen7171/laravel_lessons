@@ -24,6 +24,9 @@
 
     @yield('menu')
 <<<<<<< HEAD
+    @include('menu.service-message')
+=======
+<<<<<<< HEAD
     @if (session('success'))
         <div class="container">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -36,6 +39,7 @@
     @endif
 =======
 
+>>>>>>> master
 >>>>>>> master
     <main class="py-4">
         @yield('content')

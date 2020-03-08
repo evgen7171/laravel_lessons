@@ -17,8 +17,8 @@
                         {{--                        <a href="{{ route('admin.news.update', $item) }}"><button type="button" class="btn btn-success">Edit</button></a>--}}
                         {{--                        <a href="{{ route('admin.news.destroy', $item) }}"><button type="button" class="btn btn-danger">Delete</button></a>--}}
                         <div class="form-group-flex">
-                            <form action="{{route('admin.news.update', $item)}}" method="POST" class="mr-2">
-                                @method('PATCH')
+                            <form action="{{route('admin.news.edit', $item)}}" method="POST" class="mr-2">
+                                @method('GET')
                                 @csrf
                                 <input type="submit" class="btn btn-success" value="Edit"/>
                             </form>

@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Http\Controllers\LoginController2;
 >>>>>>> master
 use App\Providers\CustomServiceProvider;
+use App\Rules\Hashtags;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,34 @@ class News extends Model
 {
 <<<<<<< HEAD
     protected $fillable = ['title', 'text', 'image', 'category_id'];
+<<<<<<< HEAD
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class, 'category_id')->first();
+    }
+
+    public static function rules()
+    {
+        $tableCategory = (new Categories())->getTable();
+        return [
+            'title' => 'required|min:5|max:30',
+            'text' => ['required','min:5','max:5000',new Hashtags()],
+            'category_id' => "required|exists:{$tableCategory},id",
+            'image' => 'mimes:jpeg,bmp,png|max:1000'
+        ];
+    }
+
+    public static function attributeNames()
+    {
+        return [
+            'title' => 'Название новости',
+            'text' => 'Текст новости',
+            'category_id' => 'Категория новости',
+            'image' => 'Изображение'
+        ];
+    }
+=======
 =======
     /**
      * метод получения всех новостей
@@ -234,6 +263,7 @@ class News extends Model
         return DB::table('news_category')->where('caption', $category)->get('id');
     }
 
+>>>>>>> master
 >>>>>>> master
 >>>>>>> master
 }

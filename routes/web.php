@@ -51,13 +51,7 @@ Route::group([
 >>>>>>> master
     Route::match(['post', 'get'], '/download', 'IndexController@downloadForm')->name('download');
 
-//    Route::get('/news', 'NewsController@all')->name('news');
-//    Route::match(['post', 'get'], '/addNews', 'NewsController@addNews')->name('addNews');
-//    Route::get('/updateNews{news}', 'NewsController@update')->name('updateNews');
-//    Route::post('/saveNews{news}', 'NewsController@save')->name('saveNews');
-//    Route::get('/deleteNews{news}', 'NewsController@delete')->name('deleteNews');
-
-    Route::resource('news', 'NewsController')->except(['show','store','edit']);
+    Route::resource('news', 'NewsController')->except(['show']);
 
     Route::get('/categories', 'CategoriesController@all')->name('categories');
     Route::match(['post', 'get'], '/addCategory', 'CategoriesController@addCategory')->name('addCategory');
@@ -77,4 +71,5 @@ Route::group([
 >>>>>>> master
 
 Auth::routes();
+
 
