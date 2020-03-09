@@ -44,5 +44,6 @@
                 <div class="card">Нет новостей</div>
             @endforelse
         </div>
+        {{$news->links()}}
     </div>
 @endsection

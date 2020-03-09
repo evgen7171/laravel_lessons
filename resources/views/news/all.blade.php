@@ -29,7 +29,7 @@
                              data-parent="#accordionExample">
                             <div class="card-body">
                                 {{shortText($item->text)}}<span>...<a
-                                        href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
+                                            href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
                             </div>
                         </div>
                     </div>

@@ -4,8 +4,10 @@ use App\Providers\CustomServiceProvider;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\TrimStrings;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
-class CategoriesSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,42 +16,24 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('categories')->insert($this->getFakerCategories(5));
-        
-        if (!DB::table('categories')->count()) {
-            DB::table('categories')->insert($this->getSameCategories());
+        if (!DB::table('users')->count()) {
+            $this->createMainAdmin();
         }
+        factory(User::class)->create();
+
     }
 
-    private function getFakerCategories(int $count)
+    private function createMainAdmin()
     {
-        $faker = Faker\Factory::create('ru_RU');
-        $data = [];
-        for ($i = 0; $i < $count; $i++) {
-            $name = $faker->realText(18);
-            $data[] = [
-                'name' => CustomServiceProvider::translitText($name),
-                'caption' => $name
-            ];
-        }
-        return $data;
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(123123123),
+            'remember_token' => Str::random(10),
+            'created_at'=>now(),
+            'updated_at'=>now(),
+            'is_admin' => 1
+        ]);
     }
-
-    private function getSameCategories()
-    {
-        $names = [
-            'О погоде', 'О спорте', 'О политике', 'Про разное'
-        ];
-        $images = CustomServiceProvider::getImageUrls('files');
-        for ($i = 0; $i < count($names); $i++) {
-            $name = $names[$i];
-            $data[] = [
-                'name' => CustomServiceProvider::translitText($name),
-                'caption' => $name,
-                'image' => $images[$i]
-            ];
-        }
-        return $data;
-    }
-
 }

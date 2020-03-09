@@ -32,6 +32,7 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $this->validate($request, News::rules(), [], News::attributeNames());
+
         if ($request->file('image')) {
             $path = Storage::putFile('public', $request->file('image'));
             $url = Storage::url($path);
@@ -39,7 +40,7 @@ class NewsController extends Controller
         }
 
 
-        $result = $news->fill($request->except('_token'))->save();
+        $result = $news->fill($request->all())->save();
 
         if ($result) {
             return redirect()

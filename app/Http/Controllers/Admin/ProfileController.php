@@ -8,9 +8,10 @@ use App\Models\News;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     private $request;
 
@@ -21,31 +22,61 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin/users', ['users' => User::all()]);
+        return view('admin/profiles', ['users' => User::all()]);
     }
 
     public function change(User $user)
     {
-        return view('admin/changeUser', [
+        if (!Auth::user()->is_admin) {
+            $user = Auth::user();
+        }
+
+        return view('admin/changeProfile', [
             'user' => $user,
-            'roles' => User::$roles
+            'role' => $user->is_admin ? 'admin' : 'user',
+            'roles' => User::$roles,
+            'editor' => Auth::user()
         ]);
     }
 
     public function apply(Request $request, User $user)
     {
-//        $this->validate($request, User::rules(), [], News::attributeNames());
+        $errors = [];
+        $data = $request->all();
+        if ($request->get('unchangePassword')) {
+            $data = $request->except('password', 'confirm', 'newPassword');
+            $data['password'] = $user->password;
+            $result = $user->fill($data)->save();
+        } else {
+            $this->validate($request, User::rules(), [], User::attributeNames());
 
-        $result = $user->fill($request->all())->save();
+            if (User::validPassword($data, $user)) {
+                $data['password'] = Hash::make($data['newPassword']);
+                $result = $user->fill($data)->save();
+            } else {
+                $errors['password'][] = 'Текщий пароль не верный';
+                return redirect()
+                    ->route('admin.profile.change', $user)->withErrors($errors);
+            }
+        }
 
         if ($result) {
             return redirect()
-                ->route('admin.users')->with('success', 'Данные пользователя успешно изменены!!');
+                ->route('admin.profiles')->with('success', 'Данные пользователя успешно изменены!');
         } else {
             $request->flash();
             return redirect()
-                ->route('admin.user.change')->with('error', 'Ошибка изменения данных!');
+                ->route('admin.profile.change')->with('error', 'Ошибка изменения данных!');
         }
     }
 
+    public function delete(User $user)
+    {
+        $result = $user->delete();
+        if ($result) {
+            return redirect()->route('admin.profiles')->with('success', 'Пользователь удален');
+        } else {
+            return redirect()->route('admin.profiles')->with('error', 'Ошибка удаления данных');
+        }
+    }
 }

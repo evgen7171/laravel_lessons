@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\News;
+use App\Providers\CustomServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,9 +22,10 @@ class CategoriesController extends Controller
 
     public function categoryId($id)
     {
-        $category = new Categories;
-        $category->id = $id;
-        $news = $category->hasMany('App\Models\News', 'category_id')->get();
+        $category = Categories::find($id);
+        $news = $category
+            ->hasMany('App\Models\News', 'category_id')
+            ->paginate(6);
         return view('news.oneCategory', ['news' => $news, 'category' => $category]);
     }
 

@@ -20,7 +20,7 @@
                             <img src="{{asset($news->image)}}" alt="" class="card-img mb-2">
                             <p>{{ $news->text }}</p>
                         @else
-                            @include('news.noRules')
+                            @include('news.noRights')
                         @endif
                     </div>
                 </div>

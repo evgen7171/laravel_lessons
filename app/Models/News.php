@@ -27,7 +27,7 @@ class News extends Model
         ];
     }
 
-    public static function attributeNames()
+    protected static function attributeNames()
     {
         return [
             'title' => 'Название новости',

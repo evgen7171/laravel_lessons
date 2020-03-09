@@ -15,7 +15,10 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
 //        DB::table('categories')->insert($this->getFakerCategories(5));
-        DB::table('categories')->insert($this->getSameCategories());
+
+        if (!DB::table('categories')->count()) {
+            DB::table('categories')->insert($this->getSameCategories());
+        }
     }
 
     private function getFakerCategories(int $count)
@@ -37,11 +40,13 @@ class CategoriesSeeder extends Seeder
         $names = [
             'О погоде', 'О спорте', 'О политике', 'Про разное'
         ];
+        $images = CustomServiceProvider::getImageUrls('files');
         for ($i = 0; $i < count($names); $i++) {
             $name = $names[$i];
             $data[] = [
                 'name' => CustomServiceProvider::translitText($name),
-                'caption' => $name
+                'caption' => $name,
+                'image' => $images[$i]
             ];
         }
         return $data;

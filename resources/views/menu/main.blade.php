@@ -18,10 +18,6 @@
                     <a class="nav-link"
                        href="{{ route('news.categories') }}"><span class="nav-link-white {{ request()->routeIs('news.categories') ? 'active' : '' }}">Категории</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('admin.news.index') }}"><span class="nav-link-white {{ request()->routeIs('admin.news.index') ? 'active' : '' }}">Админка</span></a>
-                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -50,7 +46,8 @@
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}"
+                                  method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

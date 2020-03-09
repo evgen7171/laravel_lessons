@@ -4,16 +4,22 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Hashtags implements Rule
+/**
+ * @property  array
+ */
+class Enum implements Rule
 {
+    private $array;
+    private $attribute;
+
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($array)
     {
-        //
+        $this->array = $array;
     }
 
     /**
@@ -25,8 +31,8 @@ class Hashtags implements Rule
      */
     public function passes($attribute, $value)
     {
-        preg_match_all('/#[a-z]+/', $value, $matches, PREG_OFFSET_CAPTURE);
-        return count($matches[0]);
+        $this->attribute = $attribute;
+        return array_search($value, $this->array);
     }
 
     /**
@@ -36,6 +42,6 @@ class Hashtags implements Rule
      */
     public function message()
     {
-        return 'Отсутствуют хэштеги.';
+        return 'Выбрано неверное поле ' . $this->attribute;
     }
 }
