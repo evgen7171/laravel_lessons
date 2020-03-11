@@ -690,11 +690,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHPUnit.NewsFormTest.testSuccess" />
-      <item itemvalue="PHPUnit.NewsAddFormTest.testFirstCategory" />
-      <item itemvalue="PHPUnit.NewsAddFormTest.testWrongTitle" />
-      <item itemvalue="PHPUnit.NewsAddFormTest.testWrongText" />
       <item itemvalue="PHPUnit.NewsAddFormTest" />
+      <item itemvalue="PHPUnit.NewsAddFormTest.testFirstCategory" />
+      <item itemvalue="PHPUnit.NewsAddFormTest.testWrongText" />
+      <item itemvalue="PHPUnit.NewsAddFormTest.testWrongTitle" />
+      <item itemvalue="PHPUnit.NewsFormTest.testSuccess" />
     </list>
     <recent_temporary>
       <list>

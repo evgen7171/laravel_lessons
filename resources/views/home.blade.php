@@ -36,8 +36,12 @@
                             <div class="carousel-inner">
                                 @forelse($images as $key=>$image)
                                     <div class="carousel-item {{!$key?'active':''}}">
+<<<<<<< HEAD
                                         <img src="{{asset($image)}}"
                                              class="d-block w-100" alt="...">
+=======
+                                        <img src="{{public_path('storage/images/home/image1.jpg')}}" class="d-block w-100" alt="...">
+>>>>>>> master
                                     </div>
                                 @empty
                                     Нет изображений

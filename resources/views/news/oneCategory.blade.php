@@ -24,7 +24,11 @@
                                      data-target="#collapse_{{$key}}"
                                      aria-expanded="{{!$key?'true':'false'}}"
                                      aria-controls="collapse_{{$key}}">
+<<<<<<< HEAD
                                     @include('news.card')
+=======
+                                    {!! textLink( $item->title, !$item->isPrivate?route('news.one', ['id'=>$item->id]):'#' ) !!}
+>>>>>>> master
                                 </div>
                             </h2>
                         </div>
@@ -35,7 +39,11 @@
                              data-parent="#accordionExample">
                             <div class="card-body">
                                 {{shortText($item->text)}}<span>...<a
+<<<<<<< HEAD
                                             href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
+=======
+                                            href="{{route('news.one', ['id'=>$item->id])}}">(подробнее)</a></span>
+>>>>>>> master
                             </div>
                         </div>
                     </div>

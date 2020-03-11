@@ -23,9 +23,21 @@ class CustomServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+<<<<<<< HEAD
         //view()->share('message','тестовое сообщение')
+=======
+<<<<<<< HEAD
+        //
+>>>>>>> master
     }
 
+=======
+        Blade::directive('errmes', function () {
+            return "<p class='container' style=\"color:red;\">страница в разработке!<p>";
+        });
+
+    }
+>>>>>>> master
 
     /**
      * случаное булевое
@@ -41,15 +53,26 @@ class CustomServiceProvider extends ServiceProvider
      * получение всех полных имен файлов в папке
      * @param $path
      */
+<<<<<<< HEAD
     public static function getStoragePathFileNames($path)
     {
         $arr = [];
         $dir = scandir(public_path('storage/' . $path));
+=======
+    public static function getPathFileNames($path)
+    {
+        $arr = [];
+        $dir = scandir($path);
+>>>>>>> master
         foreach ($dir as $item) {
             if ($item == '.' or $item == '..') {
                 continue;
             }
+<<<<<<< HEAD
             $arr[] = 'storage/' . $path . '/' . $item;
+=======
+            $arr[] =  $item;
+>>>>>>> master
         }
         return $arr;
     }
