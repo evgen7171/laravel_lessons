@@ -23,7 +23,7 @@ class CategoriesController extends Controller
 
     public function update(Request $request, Categories $category)
     {
-        return view('admin.addCategories', [
+        return view('admin.addCategory', [
             'category' => $category
         ]);
     }
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories')->with('success', 'Категория успешно удалена!');
     }
 
-    public function addCategory(Request $request, Categories $category)
+    public function add(Request $request, Categories $category)
     {
         if ($request->isMethod('post')) {
 

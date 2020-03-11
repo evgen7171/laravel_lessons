@@ -3,7 +3,11 @@
 @section('title', '>> News Block >')
 
 @section('menu')
-    @include('menu.main')
+    @if(is_admin())
+        @include('menu.admin')
+    @else
+        @include('menu.main')
+    @endif
 @endsection
 
 @section('content')
@@ -11,7 +15,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Добро пожаловать на сайт NewsBlock !</div>
+                    @if(!is_admin())
+                        <div class="card-header">Добро пожаловать на сайт NewsBlock !</div>
+                    @else
+                        <div class="card-header">Добро пожаловать в Админку NewsBlock!</div>
+                    @endif
 
                     <div class="card-body">
                         @if (session('status'))

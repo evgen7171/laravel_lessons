@@ -15,6 +15,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+//Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group([
@@ -42,7 +46,8 @@ Route::group([
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
+    'middleware' => ['auth', 'is_admin']
 ], function () {
 <<<<<<< HEAD
 =======
@@ -54,13 +59,20 @@ Route::group([
     Route::resource('news', 'NewsController')->except(['show']);
 
     Route::get('/categories', 'CategoriesController@all')->name('categories');
-    Route::match(['post', 'get'], '/addCategory', 'CategoriesController@addCategory')->name('addCategory');
-    Route::get('/updateCategory{news}', 'CategoriesController@update')->name('updateCategory');
-    Route::post('/saveCategory{news}', 'CategoriesController@save')->name('saveCategory');
-    Route::get('/deleteCategory{category}', 'CategoriesController@delete')->name('deleteCategory');
+    Route::match(['post', 'get'], '/addCategory', 'CategoriesController@add')->name('categories.add');
+    Route::get('/updateCategory{category}', 'CategoriesController@update')->name('categories.update');
+    Route::post('/saveCategory{category}', 'CategoriesController@save')->name('categories.save');
+    Route::get('/deleteCategory{category}', 'CategoriesController@delete')->name('categories.delete');
 
+    Route::get('/profiles', 'ProfileController@index')->name('profiles');
+    Route::get('/changeProfile{user}', 'ProfileController@change')->name('profile.change');
+    Route::post('/applyProfile{user}', 'ProfileController@apply')->name('profile.apply');
+
+    Route::get('/deleteProfile{user}', 'ProfileController@delete')->name('profile.delete')->middleware('is_super_admin');
+
+<<<<<<< HEAD
 });
-
+=======
 =======
     Route::get('/index', 'IndexController@index')->name('admin');
     Route::match(['post', 'get'], '/addNews', 'IndexController@addNews')->name('addNews');
@@ -69,7 +81,7 @@ Route::group([
 });
 
 >>>>>>> master
+>>>>>>> master
 
-Auth::routes();
 
 

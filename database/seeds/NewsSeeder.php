@@ -25,7 +25,7 @@ class NewsSeeder extends Seeder
     private function getFakerNews(int $count, int $categoriesCount)
     {
         $faker = Faker\Factory::create('ru_RU');
-        $images = $this->getImageUrls();
+        $images = CustomServiceProvider::getImageUrls('fakers');
         $data = [];
         for ($i = 0; $i < $count; $i++) {
             $data[] = [
@@ -38,6 +38,8 @@ class NewsSeeder extends Seeder
         }
         return $data;
     }
+<<<<<<< HEAD
+=======
 
     private function getImageUrls()
     {
@@ -59,4 +61,5 @@ class NewsSeeder extends Seeder
         }
         return $arr;
     }
+>>>>>>> master
 }

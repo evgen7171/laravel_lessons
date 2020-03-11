@@ -25,25 +25,17 @@
                     @csrf
                     <div class="form-group">
                         <label for="newsTitle">Название новости</label>
-                        @if ($errors->has('title'))
-                            <div class="alert alert-danger" role="alert">
-                                @foreach($errors->get('title') as $error)
-                                    {{$error}}
-                                @endforeach
-                            </div>
-                        @endif
+
+                        {!! showErrors($errors, 'title') !!}
+
                         <input name="title" type="text" class="form-control title" id="newsTitle"
-                               value="{{ $news->title ?? old('title') }}">
+                               value="{{ old('title') ?? $news->title }}">
                     </div>
                     <div class="form-group">
                         <label for="newsCategory">Категория новости</label>
-                        @if ($errors->has('category_id'))
-                            <div class="alert alert-danger" role="alert">
-                                @foreach($errors->get('category_id') as $error)
-                                    {{$error}}
-                                @endforeach
-                            </div>
-                        @endif
+
+                        {!! showErrors($errors, 'category_id') !!}
+
                         <select name="category_id" class="form-control" id="newsCategory">
                             @forelse($categories as $item)
 <<<<<<< HEAD
@@ -69,23 +61,16 @@
                     </div>
                     <div class="form-group">
                         <label for="newsText">Текст новости</label>
-                        @if ($errors->has('text'))
-                            <div class="alert alert-danger" role="alert">
-                                @foreach($errors->get('text') as $error)
-                                    {{$error}}
-                                @endforeach
-                            </div>
-                        @endif
+
+                        {!! showErrors($errors, 'text') !!}
+
                         <textarea name="text" class="form-control" rows="5"
-                                  id="newsText">{{ $news->text ?? old('text') }}</textarea>
+                                  id="newsText">{{ old('text') ?? $news->text }}</textarea>
                     </div>
-                    @if ($errors->has('image'))
-                        <div class="alert alert-danger" role="alert">
-                            @foreach($errors->get('image') as $error)
-                                {{$error}}
-                            @endforeach
-                        </div>
-                    @endif
+
+
+
+
                     @if($news)<img src="{{asset($news->image)}}" alt="">@endif
                     <div class="form-group">
                         <input type="file" name="image">

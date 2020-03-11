@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('shortText')) {
     function shortText($text, $count = 20)
     {
@@ -54,5 +56,36 @@ if (!function_exists('showErrors')) {
 //                @endforeach
 //            </div>
 //            @endif
+    }
+}
+if (!function_exists('toArrayValues')) {
+    function toArrayValues(Array $array, string $key = '')
+    {
+        $arr = [];
+        if ($key == '') {
+            $key = array_keys($array[0])[0];
+        }
+        foreach ($array as $item) {
+            $arr[] = $item[$key];
+        }
+        return $arr;
+    }
+}
+if (!function_exists('is_admin')) {
+    function is_admin()
+    {
+        if(!Auth::user()){
+            return false;
+        }
+        return Auth::user()->is_admin;
+    }
+}
+if (!function_exists('is_super_admin')) {
+    function is_super_admin()
+    {
+        if(!Auth::user()){
+            return false;
+        }
+        return Auth::user()->name == 'admin';
     }
 }

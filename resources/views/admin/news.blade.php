@@ -9,10 +9,12 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <h2>Админка</h2>
             @forelse($news as $item)
                 <div class="col-md-12 card">
                     <div class="card-body">
+                        <div class="card-img-icon-large float-left mr-2">
+                            <img src="{{asset($item->image)}}" alt="">
+                        </div>
                         <h2>{{ $item->title }}</h2>
                         {{--                        <a href="{{ route('admin.news.update', $item) }}"><button type="button" class="btn btn-success">Edit</button></a>--}}
                         {{--                        <a href="{{ route('admin.news.destroy', $item) }}"><button type="button" class="btn btn-danger">Delete</button></a>--}}

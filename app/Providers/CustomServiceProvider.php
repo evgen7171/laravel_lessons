@@ -115,4 +115,20 @@ class CustomServiceProvider extends ServiceProvider
         return strtr($string, $converter);
     }
 
+    public static function getImageUrls($folder)
+    {
+        $arr = [];
+        $imagesPath = 'images/'.$folder;
+        $dir = scandir(public_path('storage/'.$imagesPath));
+        foreach ($dir as $item) {
+            if ($item == '.' or $item == '..') {
+                continue;
+            }
+            $arr[] = 'storage/' . $imagesPath . '/' . $item;
+        }
+        if (!count($arr)) {
+            return false;
+        }
+        return $arr;
+    }
 }

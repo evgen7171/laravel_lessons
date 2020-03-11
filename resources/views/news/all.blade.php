@@ -54,9 +54,13 @@
                             <div class="card-body">
                                 {{shortText($item->text)}}<span>...<a
 <<<<<<< HEAD
+                                            href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
+=======
+<<<<<<< HEAD
                                         href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
 =======
                                             href="{{route('news.one', ['id'=>$item->id])}}">(подробнее)</a></span>
+>>>>>>> master
 >>>>>>> master
                             </div>
                         </div>

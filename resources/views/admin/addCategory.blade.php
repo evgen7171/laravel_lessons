@@ -11,18 +11,18 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form enctype="multipart/form-data"
-                      action=" @if (!$category->id){{ route('admin.addCategory') }} @else {{ route('admin.saveCategory', $category) }}@endif"
+                      action=" @if (!$category->id){{ route('admin.categories.add') }} @else {{ route('admin.categories.save', $category) }}@endif"
                       method="post">
                     @csrf
                     <div class="form-group">
                         <label for="categoryCaption">Название категории</label>
                         <input name="caption" type="text" class="form-control" id="categoryCaption"
-                               value="{{ $category->caption ?? old('caption') }}">
+                               value="{{ old('caption') ?? $category->caption }}">
                     </div>
 
                     <div class="form-group">
                         <button class="form-control" type="submit">
-                            @if ($category->id) Изменить @else Добавить @endif
+                            @if (!$category->id) Изменить @else Добавить @endif
                         </button>
 
                     </div>

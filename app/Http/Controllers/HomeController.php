@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -25,8 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+=======
 //        dump(Auth::guest());
 <<<<<<< HEAD
+>>>>>>> master
         $images = CustomServiceProvider::getStoragePathFileNames('images/home');
 =======
         $images = CustomServiceProvider::getPathFileNames(storage_path('images/home'));
