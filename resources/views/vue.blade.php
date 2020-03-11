@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: UserUser
- * Date: 09.03.2020
- * Time: 18:45
- */
+@extends('layouts.app')
+
+@section('title', 'Новости')
+
+@section('menu')
+    @include('menu.main')
+@endsection
+
+@section('content')
+    <example-component></example-component>
+    <new-component></new-component>
+@endsection

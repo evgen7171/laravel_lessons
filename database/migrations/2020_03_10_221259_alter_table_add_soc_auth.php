@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AfterUsersIsAdmin extends Migration
+class AlterTableAddSocAuth extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,10 @@ class AfterUsersIsAdmin extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(0)->comment('администратор');
+            $table->string('id_in_soc', 20)->default('')->comment('id в соцсети');
+            $table->enum('type_auth', ['site', 'vk', 'fb']);
+            $table->string('avatar', 150)->default('')->comment('ссылка на аватар');
+            $table->index('id_in_soc');
         });
     }
 
@@ -26,7 +29,7 @@ class AfterUsersIsAdmin extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['is_admin']);
+            $table->dropColumn(['id_in_soc', 'type_auth', 'avatar']);
         });
     }
 }

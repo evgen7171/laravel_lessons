@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\NewsController;
-use App\Models\Admin;
-use App\Models\News;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,7 +19,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('admin/profiles', ['users' => User::all()]);
+        return view('admin.profiles.profiles', ['users' => User::all()]);
     }
 
     public function change(User $user)
@@ -31,7 +28,7 @@ class ProfileController extends Controller
             $user = Auth::user();
         }
 
-        return view('admin/changeProfile', [
+        return view('admin.profiles.changeProfile', [
             'user' => $user,
             'role' => $user->is_admin ? 'admin' : 'user',
             'roles' => User::$roles,

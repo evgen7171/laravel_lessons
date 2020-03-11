@@ -9,7 +9,17 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
+
 class UserController
 {
+    public function edit(User $user)
+    {
+        return view('profile');
+    }
 
+    public function update(User $user)
+    {
+        dd($user);
+    }
 }

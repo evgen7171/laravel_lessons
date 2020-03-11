@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\NewsController;
-use App\Models\Admin;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,7 +18,6 @@ class IndexController extends Controller
     public function index()
     {
         //
-        return view('admin/index');
     }
 
     public function saveData($data)

@@ -15,11 +15,17 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', 'HomeController@index')->name('home');
+
 //Auth::routes();
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+Route::get('/auth/vk', 'LoginController@loginVK')->name('vkLogin');
+Route::get('/auth/vk/response', 'LoginController@responseVK')->name('vkResponse');
 
 Route::group([
     'prefix' => 'news',
@@ -54,7 +60,19 @@ Route::group([
 
     Route::get('/deleteProfile{user}', 'ProfileController@delete')->name('profile.delete')->middleware('is_super_admin');
 
+    Route::get('/parser', 'ParserController@index')->name('parser');
+    Route::post('/parser', 'ParserController@parser')->name('parser');
+
 });
 
+Route::get('/vue', 'HomeController@vue')->name('vue');
+Route::post('/', 'HomeController@telegram')->name('telegram');
+
+Route::group([
+    'middleware' => ['auth']
+], function () {
+    Route::get('/profile{user}', 'UserController@edit')->name('profile.edit');
+    Route::post('/profile{user}', 'UserController@update')->name('profile.update');
+});
 
 

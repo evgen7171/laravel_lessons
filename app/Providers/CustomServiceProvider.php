@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Console\Input\Input;
 
 class CustomServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,9 @@ class CustomServiceProvider extends ServiceProvider
      */
     public static function getStoragePathFileNames($path)
     {
+        $path = self::copyInStorage();
+        dd($path);
+        //////////////////
         $arr = [];
         $dir = scandir(public_path('storage/' . $path));
         foreach ($dir as $item) {
@@ -52,6 +58,29 @@ class CustomServiceProvider extends ServiceProvider
             $arr[] = 'storage/' . $path . '/' . $item;
         }
         return $arr;
+    }
+
+    /**
+     * копирование папки storage
+     */
+    public static function copyInStorage()
+    {
+        $path_from = storage_path('app\public');
+        $path_to = 'images';
+        self::directoryIter($path_from, $path_to);
+    }
+
+    public static function directoryIter(string $path_from, string $path_to, $str = '')
+    {
+        foreach (new \DirectoryIterator($path_from) as $fileInfo) {
+            if ($fileInfo->isDot() or $fileInfo->getFilename() == '.gitignore') continue;
+            if ($fileInfo->isDir()) {
+                $str .= $fileInfo->getFilename().'\\';
+                self::directoryIter($path_from . '\\' . $fileInfo, $path_to, $str);
+            }
+            File::put(public_path($str . $fileInfo->getFilename()),
+                File::get($fileInfo->getPathname()));
+        }
     }
 
     /**
@@ -95,8 +124,9 @@ class CustomServiceProvider extends ServiceProvider
     public static function getImageUrls($folder)
     {
         $arr = [];
-        $imagesPath = 'images/'.$folder;
-        $dir = scandir(public_path('storage/'.$imagesPath));
+        $imagesPath = 'images/' . $folder;
+//        $dir = scandir(public_path('storage/' . $imagesPath));
+        $dir = scandir(public_path( $imagesPath));
         foreach ($dir as $item) {
             if ($item == '.' or $item == '..') {
                 continue;

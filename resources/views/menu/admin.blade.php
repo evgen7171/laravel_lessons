@@ -44,6 +44,11 @@
                        href="{{ route('admin.profiles') }}"><span
                                 class="nav-link-white {{ request()->routeIs('admin.profiles') ? 'active' : '' }}">Пользователи</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ route('admin.parser') }}"><span
+                                class="nav-link-white {{ request()->routeIs('admin.parser') ? 'active' : '' }}">Парсер</span></a>
+                </li>
 
             </ul>
 

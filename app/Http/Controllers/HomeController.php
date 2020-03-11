@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -25,7 +25,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $images = CustomServiceProvider::getStoragePathFileNames('images/home');
+//        $images = CustomServiceProvider::getStoragePathFileNames('images/home');
+
+        $images = [];
+        $path = 'images/home';
+        foreach (scandir(public_path($path)) as $item) {
+            if ($item == '.' or $item == '..') continue;
+            $images[] = $path .'/'. $item;
+        }
+
         return view('home', ['images' => $images]);
     }
+
+    public function vue()
+    {
+        return view('vue');
+    }
+
+    public function telegram()
+    {
+        message_to_telegram('News Block');
+        return redirect()->route('home');
+    }
+
+
 }

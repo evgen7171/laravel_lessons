@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Categories;
-use App\Models\Admin;
 use App\Models\News;
 use App\Providers\CustomServiceProvider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
@@ -17,13 +15,13 @@ class CategoriesController extends Controller
         $categories = Categories::query()
             ->paginate(6);
 
-        return view('admin.categories', ['categories' => $categories]);
+        return view('admin.news.categories', ['categories' => $categories]);
 
     }
 
     public function update(Request $request, Categories $category)
     {
-        return view('admin.addCategory', [
+        return view('admin.news.addCategory', [
             'category' => $category
         ]);
     }
@@ -57,7 +55,7 @@ class CategoriesController extends Controller
             return redirect()->route('admin.categories')->with('success', 'Категория успешно создана!');
         }
 
-        return view('admin.addCategory', [
+        return view('admin.news.addCategory', [
             'category' => $category
         ]);
     }
