@@ -20,6 +20,15 @@ class CreateCategoriesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
+<<<<<<< HEAD
+=======
+
+        Schema::table('news', function (Blueprint $table) {
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')->on('categories');
+        });
+>>>>>>> master
     }
 
     /**
@@ -29,6 +38,13 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+<<<<<<< HEAD
+=======
+        Schema::table('news', function(Blueprint $table){
+            $table->dropForeign('news_category_id_foreign');
+        });
+
+>>>>>>> master
         Schema::dropIfExists('categories');
     }
 }

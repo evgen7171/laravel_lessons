@@ -14,11 +14,19 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
 //        DB::table('categories')->insert($this->getFakerCategories(5));
+<<<<<<< HEAD
 
         if (!DB::table('categories')->count()) {
             DB::table('categories')->insert($this->getSameCategories());
         }
+=======
+        DB::table('categories')->insert($this->getSameCategories());
+=======
+        DB::table('categories')->insert($this->getFakerCategories(5));
+>>>>>>> master
+>>>>>>> master
     }
 
     private function getFakerCategories(int $count)
@@ -35,6 +43,7 @@ class CategoriesSeeder extends Seeder
         return $data;
     }
 
+<<<<<<< HEAD
     private function getSameCategories()
     {
         $names = [
@@ -52,4 +61,6 @@ class CategoriesSeeder extends Seeder
         return $data;
     }
 
+=======
+>>>>>>> master
 }

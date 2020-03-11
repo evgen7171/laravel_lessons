@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
 //        $images = CustomServiceProvider::getStoragePathFileNames('images/home');
 
         $images = [];
@@ -34,6 +35,17 @@ class HomeController extends Controller
             $images[] = $path .'/'. $item;
         }
 
+=======
+<<<<<<< HEAD
+=======
+//        dump(Auth::guest());
+<<<<<<< HEAD
+>>>>>>> master
+        $images = CustomServiceProvider::getStoragePathFileNames('images/home');
+=======
+        $images = CustomServiceProvider::getPathFileNames(storage_path('images/home'));
+>>>>>>> master
+>>>>>>> 0147a26da9ff9554c65dbc8412676ff47c4046a5
         return view('home', ['images' => $images]);
     }
 

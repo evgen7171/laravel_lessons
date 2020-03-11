@@ -38,4 +38,28 @@ class NewsSeeder extends Seeder
         }
         return $data;
     }
+<<<<<<< HEAD
+=======
+
+    private function getImageUrls()
+    {
+        $arr = [];
+        $imagesPath = 'images/fakers';
+<<<<<<< HEAD
+        $dir = scandir(public_path('storage/'.$imagesPath));
+=======
+        $dir = scandir(storage_path($imagesPath));
+>>>>>>> master
+        foreach ($dir as $item) {
+            if ($item == '.' or $item == '..') {
+                continue;
+            }
+            $arr[] = 'storage/' . $imagesPath . '/' . $item;
+        }
+        if (!count($arr)) {
+            return false;
+        }
+        return $arr;
+    }
+>>>>>>> master
 }
