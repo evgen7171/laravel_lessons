@@ -20,6 +20,9 @@ class UserController
 
     public function update(User $user)
     {
-        dd($user);
+        $this->validate($user, User::rules(), [], User::attributeNames());
+        $userInSystem = new User();
+        $userInSystem->fill($user)->save();
+        return redirect()->route('/');
     }
 }
