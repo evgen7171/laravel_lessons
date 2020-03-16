@@ -29,27 +29,33 @@
                             <a class="font-weight-bold" href="{{$item['link']}}">Подробнее</a>
                         </div>
 
-                        <form action="{{route('admin.parser.saveNews')}}" method="post">
-                            @csrf
-                            <p class="text-right mt-3">
-                                <input type="hidden" name="parsedLink" value="{{$data['link']}}">
+                        @if(isset($data['savedTitles']) and find_in_array($item['title'],$data['savedTitles']))
+                            <form action="{{route('admin.parser.deleteNews')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="parsedLink" value="{{$data['parsedLink']}}">
+                                <input type="hidden" name="category" value="{{$data['title']}}">
+                                <input type="hidden" name="title" value="{{$item['title']}}">
+                                <p class="text-right mt-3">
+                                    <input type="submit"
+                                           class="btn btn-danger" value="Удалить новость">
+                                </p>
+                            </form>
+                        @else
+                            <form action="{{route('admin.parser.saveNews')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="parsedLink" value="{{$data['parsedLink']}}">
                                 <input type="hidden" name="category" value="{{$data['title']}}">
                                 <input type="hidden" name="image" value="{{$item['enclosure::url']}}">
                                 <input type="hidden" name="title" value="{{$item['title']}}">
                                 <input type="hidden" name="description" value="{{$item['description']}}">
                                 <input type="hidden" name="pubDate" value="{{$item['pubDate']}}">
                                 <input type="hidden" name="link" value="{{$item['link']}}">
-                                @if(!isset($saved) or !$saved)
+                                <p class="text-right mt-3">
                                     <input type="submit"
-                                           class="btn btn-warning"
-                                           value="Сохранить новость">
-                                @else
-                                    <input type="submit"
-                                           class="btn btn-danger"
-                                           value="Удалить новость">
-                                @endif
-                            </p>
-                        </form>
+                                           class="btn btn-warning" value="Сохранить новость">
+                                </p>
+                            </form>
+                        @endif
                     </div>
                 </div>
             @empty

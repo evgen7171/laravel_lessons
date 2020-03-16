@@ -28,7 +28,7 @@
                              aria-labelledby="heading_{{$key}}"
                              data-parent="#accordionExample">
                             <div class="card-body">
-                                {{shortText($item->text)}}<span>...<a
+                                {!! shortText($item->text) !!}<span>...<a
                                             href="{{route('news.one', $item->id)}}">(подробнее)</a></span>
                             </div>
                         </div>

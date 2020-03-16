@@ -42,11 +42,4 @@ class HomeController extends Controller
         return view('vue');
     }
 
-    public function telegram()
-    {
-        message_to_telegram('News Block');
-        return redirect()->route('home');
-    }
-
-
 }

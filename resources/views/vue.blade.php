@@ -8,5 +8,4 @@
 
 @section('content')
     <example-component></example-component>
-    <new-component></new-component>
 @endsection

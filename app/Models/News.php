@@ -21,7 +21,7 @@ class News extends Model
         $tableCategory = (new Categories())->getTable();
         return [
             'title' => 'required|min:5|max:30',
-            'text' => ['required','min:5','max:5000',new Hashtags()],
+            'text' => ['required', 'min:5', 'max:5000', new Hashtags()],
             'category_id' => "required|exists:{$tableCategory},id",
             'image' => 'mimes:jpeg,bmp,png|max:1000'
         ];
@@ -35,5 +35,11 @@ class News extends Model
             'category_id' => 'Категория новости',
             'image' => 'Изображение'
         ];
+    }
+
+    public static function findTitleNewsId($newsTitle)
+    {
+        $result = self::query()->where('title', '=', $newsTitle)->first();
+        return $result ? $result->id : null;
     }
 }

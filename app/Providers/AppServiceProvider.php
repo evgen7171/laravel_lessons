@@ -25,11 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->fakerCreate();
-     
-//        \Validator::extend('tags', function ($attr, $value, $param, $validator) {
-//            preg_match_all('/#[a-z]+/',$value,$matches,PREG_OFFSET_CAPTURE);
-//            return count($matches[0]);
-//        });
     }
 
     private function fakerCreate()

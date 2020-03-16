@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Categories;
 use App\Models\News;
+use App\Providers\CustomServiceProvider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -90,4 +91,27 @@ class NewsController extends Controller
                 ->route('admin.news.create')->with('error', 'Ошибка базы данных: новость не создана!');
         }
     }
+
+//    public static function parsingAdd(News $news)
+//    {
+//        $id = News::newsId($news->title);
+//        if (!$id) {
+//            $news->save();
+//            $id = News::newsId($news->title);
+//        };
+//        return $id;
+//    }
+//
+//    public static function getParsingNewsId(Request $request, $categoryId)
+//    {
+//        $news = new News();
+//        $news->fill([
+//            'title' => $request->title,
+//            'image' => $request->image ? $request->image : '',
+//            'text' => $request->description,
+//            'category_id' => $categoryId,
+//            'isPrivate' => 0
+//        ]);
+//        return NewsController::parsingAdd($news);
+//    }
 }

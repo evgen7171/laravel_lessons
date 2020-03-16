@@ -26,6 +26,12 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('/auth/vk', 'LoginController@loginVK')->name('vkLogin');
 Route::get('/auth/vk/response', 'LoginController@responseVK')->name('vkResponse');
+Route::get('/auth/fb', 'LoginController@loginFB')->name('fbLogin');
+Route::get('/auth/fb/response', 'LoginController@responseFB')->name('fbResponse');
+Route::get('/auth/google', 'LoginController@loginGoogle')->name('googleLogin');
+Route::get('/auth/google/response', 'LoginController@responseGoogle')->name('googleResponse');
+Route::get('/auth/github', 'LoginController@loginGithub')->name('githubLogin');
+Route::get('/auth/github/response', 'LoginController@responseGithub')->name('githubResponse');
 
 Route::group([
     'prefix' => 'news',
@@ -62,11 +68,12 @@ Route::group([
 
     Route::get('/parser', 'ParserController@index')->name('parser');
     Route::post('/parser', 'ParserController@parser')->name('parser');
+    Route::post('/parser_save', 'ParserController@saveNews')->name('parser.saveNews');
+    Route::post('/parser_delete', 'ParserController@deleteNews')->name('parser.deleteNews');
 
 });
 
 Route::get('/vue', 'HomeController@vue')->name('vue');
-Route::post('/', 'HomeController@telegram')->name('telegram');
 
 Route::group([
     'middleware' => ['auth']

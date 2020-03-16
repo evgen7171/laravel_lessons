@@ -75,7 +75,7 @@ class CustomServiceProvider extends ServiceProvider
         foreach (new \DirectoryIterator($path_from) as $fileInfo) {
             if ($fileInfo->isDot() or $fileInfo->getFilename() == '.gitignore') continue;
             if ($fileInfo->isDir()) {
-                $str .= $fileInfo->getFilename().'\\';
+                $str .= $fileInfo->getFilename() . '\\';
                 self::directoryIter($path_from . '\\' . $fileInfo, $path_to, $str);
             }
             File::put(public_path($str . $fileInfo->getFilename()),
@@ -124,14 +124,17 @@ class CustomServiceProvider extends ServiceProvider
     public static function getImageUrls($folder)
     {
         $arr = [];
-        $imagesPath = 'images/' . $folder;
+        $imagesPathes = 'images/' . $folder;
+
 //        $dir = scandir(public_path('storage/' . $imagesPath));
-        $dir = scandir(public_path( $imagesPath));
+
+        $dir = scandir(public_path($imagesPathes));
+
         foreach ($dir as $item) {
             if ($item == '.' or $item == '..') {
                 continue;
             }
-            $arr[] = 'storage/' . $imagesPath . '/' . $item;
+            $arr[] = $imagesPathes . '/' . $item;
         }
         if (!count($arr)) {
             return false;

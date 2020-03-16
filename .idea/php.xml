@@ -114,6 +114,11 @@
       <path value="$PROJECT_DIR$/vendor/socialiteproviders/vkontakte" />
       <path value="$PROJECT_DIR$/vendor/socialiteproviders/manager" />
       <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/facebook" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/google" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/github" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/unisharp/laravel-filemanager" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

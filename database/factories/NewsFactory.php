@@ -11,7 +11,6 @@ $factory->define(News::class, function (Faker $faker) {
 
     $categoriesCount = DB::table('categories')->count() ?: 1;
     $images = CustomServiceProvider::getImageUrls('fakers');
-//    $faker = Faker\Factory::create('ru_RU');
 
     return [
         'title' => $faker->realText(rand(20, 50)),
@@ -20,4 +19,5 @@ $factory->define(News::class, function (Faker $faker) {
         'image' => $images[rand(1, count($images) - 1)],
         'category_id' => rand(1, $categoriesCount)
     ];
+
 });

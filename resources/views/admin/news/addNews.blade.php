@@ -43,13 +43,11 @@
                         {!! showErrors($errors, 'text') !!}
 
                         <textarea name="text" class="form-control" rows="5"
-                                  id="newsText">{{ old('text') ?? $news->text }}</textarea>
+                                  id="newsText">{!! old('text') ?? $news->text !!}</textarea>
                     </div>
 
 
-
-
-                    @if($news)<img src="{{asset($news->image)}}" alt="">@endif
+                    @if($news)<img src="{{asset($news->image)}}" alt="" width="100%">@endif
                     <div class="form-group">
                         <input type="file" name="image">
                     </div>
@@ -74,5 +72,16 @@
             </div>
         </div>
     </div>
-
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('newsText', options)
+    </script>
 @endsection

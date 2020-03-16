@@ -18,7 +18,7 @@
                     <div class="card-body">
                         @if (!$news->isPrivate || Auth::id())
                             <img src="{{asset($news->image)}}" alt="" class="card-img mb-2">
-                            <p>{{ $news->text }}</p>
+                            <p>{!! $news->text !!}</p>
                         @else
                             @include('news.noRights')
                         @endif

@@ -3,7 +3,6 @@
 use App\Providers\CustomServiceProvider;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Http\Middleware\TrimStrings;
 
 class CategoriesSeeder extends Seeder
 {
@@ -14,25 +13,9 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('categories')->insert($this->getFakerCategories(5));
-
         if (!DB::table('categories')->count()) {
             DB::table('categories')->insert($this->getSameCategories());
         }
-    }
-
-    private function getFakerCategories(int $count)
-    {
-        $faker = Faker\Factory::create('ru_RU');
-        $data = [];
-        for ($i = 0; $i < $count; $i++) {
-            $name = $faker->realText(18);
-            $data[] = [
-                'name' => CustomServiceProvider::translitText($name),
-                'caption' => $name
-            ];
-        }
-        return $data;
     }
 
     private function getSameCategories()

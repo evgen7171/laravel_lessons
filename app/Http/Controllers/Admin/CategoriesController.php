@@ -59,4 +59,24 @@ class CategoriesController extends Controller
             'category' => $category
         ]);
     }
+
+//    public static function parsingAdd(Categories $category)
+//    {
+//        $id = Categories::categoryId($category->caption);
+//        if (!$id) {
+//            $category->save();
+//            $id = Categories::categoryId($category->caption);
+//        };
+//        return $id;
+//    }
+//
+//    public static function getParsingCategoryId(Request $request){
+//        $category = new Categories();
+//        $category->fill([
+//            'name' => CustomServiceProvider::translitText($request->category),
+//            'caption' => $request->category
+//        ]);
+//        $id = CategoriesController::parsingAdd($category);
+//        return $id;
+//    }
 }

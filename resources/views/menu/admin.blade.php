@@ -24,11 +24,6 @@
                         <span class="nav-link-white">Добавить категорию</span></a>
                 </li>
 
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link {{ request()->routeIs('admin.download') ? 'active' : '' }}"--}}
-                       {{--href="{{ route('admin.download') }}">--}}
-                        {{--<span class="nav-link-white">Скачать данные</span></a>--}}
-                {{--</li>--}}
                 <li class="nav-item">
                     <a class="nav-link"
                        href="{{ route('admin.news.index') }}"><span
@@ -74,6 +69,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('profile.edit', Auth::id())}}">
+                                Редактировать профиль
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

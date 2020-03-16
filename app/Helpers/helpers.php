@@ -74,7 +74,7 @@ if (!function_exists('toArrayValues')) {
 if (!function_exists('is_admin')) {
     function is_admin()
     {
-        if(!Auth::user()){
+        if (!Auth::user()) {
             return false;
         }
         return Auth::user()->is_admin;
@@ -83,41 +83,17 @@ if (!function_exists('is_admin')) {
 if (!function_exists('is_super_admin')) {
     function is_super_admin()
     {
-        if(!Auth::user()){
+        if (!Auth::user()) {
             return false;
         }
         return Auth::user()->name == 'admin';
     }
 }
 
-if (!function_exists('message_to_telegram')) {
-    function message_to_telegram($text)
+if (!function_exists('find_in_array')) {
+    function find_in_array($elem, $array)
     {
-        // Токен бота и идентификатор чата
-        $token = '1140241864:AAG0ONyzcgyUNc2MvkRm2RJk6XHQSYsy4Qg';
-        $chat_id = '698237240';
-
-// Отправить сообщение
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,
-            'https://api.telegram.org/bot' . $token . '/sendMessage');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,
-            'chat_id=' . $chat_id . '&text=' . urlencode($text));
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-
-// Настройки прокси, если это необходимо
-        $proxy = '111.222.222.111:8080';
-        $auth = 'login:password';
-        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
-        curl_setopt($ch, CURLOPT_PROXYUSERPWD, $auth);
-
-// Отправить сообщение
-        $result = curl_exec($ch);
-        curl_close($ch);
+        return is_int(array_search($elem, $array));
     }
 }
+

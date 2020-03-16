@@ -56,10 +56,6 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{route('telegram')}}" class="mt-3" method="post">
-                    @csrf
-                    <input type="submit" value="telegram">
-                </form>
             </div>
         </div>
     </div>

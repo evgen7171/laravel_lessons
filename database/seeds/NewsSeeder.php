@@ -15,17 +15,14 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-
         factory(News::class, 10)->create();
-
-//        $categoriesCount = DB::table('categories')->count() ?: 1;
-//        DB::table('news')->insert($this->getFakerNews(20, $categoriesCount));
     }
 
     private function getFakerNews(int $count, int $categoriesCount)
     {
         $faker = Faker\Factory::create('ru_RU');
         $images = CustomServiceProvider::getImageUrls('fakers');
+
         $data = [];
         for ($i = 0; $i < $count; $i++) {
             $data[] = [
