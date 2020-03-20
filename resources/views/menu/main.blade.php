@@ -36,11 +36,11 @@
                        href="{{ route('fbLogin') }}"><span
                                 class="nav-link-white {{ request()->routeIs('fbLogin') ? 'active' : '' }}">Войти через FB</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('googleLogin') }}"><span
-                                class="nav-link-white {{ request()->routeIs('googleLogin') ? 'active' : '' }}">Войти через Google</span></a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link"--}}
+                       {{--href="{{ route('googleLogin') }}"><span--}}
+                                {{--class="nav-link-white {{ request()->routeIs('googleLogin') ? 'active' : '' }}">Войти через Google</span></a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a class="nav-link"
                        href="{{ route('githubLogin') }}"><span
