@@ -26,7 +26,7 @@ class LoginController extends Controller
         }
         $user = Socialite::driver('vkontakte')->user();
         session(['soc.token' => $user->token]);
-        $userInSystem = $userRepository->getUserBySocId($user, 'vk');
+        $userInSystem = $userRepository->getUserBySocIdVK($user, 'vk');
         Auth::login($userInSystem);
         return redirect()->route('home');
     }

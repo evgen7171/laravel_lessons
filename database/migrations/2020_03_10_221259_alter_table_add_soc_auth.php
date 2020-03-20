@@ -15,7 +15,7 @@ class AlterTableAddSocAuth extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('id_in_soc', 20)->default('')->comment('id в соцсети');
-            $table->enum('type_auth', ['site', 'vk', 'fb']);
+            $table->enum('type_auth', ['site', 'vk', 'fb', 'github', 'google', 'mail']);
             $table->string('avatar', 150)->default('')->comment('ссылка на аватар');
             $table->index('id_in_soc');
         });

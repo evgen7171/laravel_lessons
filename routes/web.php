@@ -26,8 +26,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('/auth/vk', 'LoginController@loginVK')->name('vkLogin');
 Route::get('/auth/vk/response', 'LoginController@responseVK')->name('vkResponse');
-Route::get('/auth/fb', 'LoginController@loginFB')->name('fbLogin');
-Route::get('/auth/fb/response', 'LoginController@responseFB')->name('fbResponse');
+Route::get('/auth/facebook', 'LoginController@loginFB')->name('fbLogin');
+Route::get('/auth/facebook/response', 'LoginController@responseFB')->name('fbResponse');
 Route::get('/auth/google', 'LoginController@loginGoogle')->name('googleLogin');
 Route::get('/auth/google/response', 'LoginController@responseGoogle')->name('googleResponse');
 Route::get('/auth/github', 'LoginController@loginGithub')->name('githubLogin');
@@ -82,4 +82,20 @@ Route::group([
     Route::post('/profile{user}', 'UserController@update')->name('profile.update');
 });
 
+/* todo
+
+сделать добавить свой кастомный пасинг других сайтов (habr) (?)
+
+Привести в порядок роуты (все к компактному виду, типа ресурс)
+Сделать тесты(!)
+
+сделать отображение времени пользователя через $time=now();$time->diffForHumans...
+
+--------------
+2. Создать миграцию для добавления в базу новой таблицы resources. Она будет хранить информацию о ресурсах, с которых необходимо забирать новости. Добавить интерфейс для редактирования и добавления данных в эту таблицу.
+---3. Реализовать алгоритм получения новых новостей из ресурсов, сохраненных в таблице resources, с добавлением нужной информации в таблицу news.
+4. Используя очереди, реализовать алгоритм параллельного запроса информации из сторонних сервисов с выводом ее пользователю в браузер.
+Убрать Seeding новостей. Т.е. новости не должны случайно заполняться, а должны парситься реальными по команде из админки.
+
+*/
 
